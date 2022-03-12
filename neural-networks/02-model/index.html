@@ -13,7 +13,7 @@
     
     
       
-        <title>Forward pass - Machine Learning Techniques</title>
+        <title>Model - Machine Learning Techniques</title>
       
     
     
@@ -59,7 +59,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#forward-pass" class="md-skip">
+        <a href="#model" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Forward pass
+              Model
             
           </span>
         </div>
@@ -204,14 +204,14 @@
       
       
         <label class="md-nav__link" for="__nav_2">
-          Neural Networks
+          Neural networks
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Neural Networks" data-md-level="1">
+      <nav class="md-nav" aria-label="Neural networks" data-md-level="1">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
-          Neural Networks
+          Neural networks
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -247,20 +247,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="../02-model/" class="md-nav__link">
-        Model
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -273,12 +259,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Forward pass
+          Model
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Forward pass
+        Model
       </a>
       
         
@@ -297,15 +283,76 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#activations" class="md-nav__link">
-    Activations
+  <a href="#layers" class="md-nav__link">
+    Layers
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#algorithm" class="md-nav__link">
-    Algorithm
+  <a href="#weights-and-biases" class="md-nav__link">
+    Weights and biases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#activation-functions" class="md-nav__link">
+    Activation functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Activation functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hidden-layers" class="md-nav__link">
+    Hidden layers
+  </a>
+  
+    <nav class="md-nav" aria-label="Hidden layers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sigmoid" class="md-nav__link">
+    Sigmoid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tanh" class="md-nav__link">
+    Tanh
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relu" class="md-nav__link">
+    ReLU
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-layer" class="md-nav__link">
+    Output layer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-architecture" class="md-nav__link">
+    Network Architecture
   </a>
   
 </li>
@@ -314,6 +361,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-forward/" class="md-nav__link">
+        Forward pass
+      </a>
     </li>
   
 
@@ -394,15 +455,76 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#activations" class="md-nav__link">
-    Activations
+  <a href="#layers" class="md-nav__link">
+    Layers
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#algorithm" class="md-nav__link">
-    Algorithm
+  <a href="#weights-and-biases" class="md-nav__link">
+    Weights and biases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#activation-functions" class="md-nav__link">
+    Activation functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Activation functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hidden-layers" class="md-nav__link">
+    Hidden layers
+  </a>
+  
+    <nav class="md-nav" aria-label="Hidden layers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sigmoid" class="md-nav__link">
+    Sigmoid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tanh" class="md-nav__link">
+    Tanh
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relu" class="md-nav__link">
+    ReLU
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-layer" class="md-nav__link">
+    Output layer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-architecture" class="md-nav__link">
+    Network Architecture
   </a>
   
 </li>
@@ -421,43 +543,156 @@
                 
 
 
-<h1 id="forward-pass">Forward pass<a class="headerlink" href="#forward-pass" title="Permanent link">&para;</a></h1>
-<p>As stated earlier, the network can be seen as a function <span class="arithmatex">\(h: \mathbb{R}^{m} \rightarrow \mathbb{R}^{k}\)</span>. In the case of a multi-class classification problem, given a data-point <span class="arithmatex">\(\boldsymbol{x} \in \mathbb{R}^m\)</span>, the network outputs a vector of probabilities.
-$$
-h(\boldsymbol{x}) = \boldsymbol{\hat{y}}
-$$
-If the feature matrix <span class="arithmatex">\(\boldsymbol{X}\)</span> of size <span class="arithmatex">\(n \times m\)</span> is passed as input, we get a matrix of probabilities, <span class="arithmatex">\(\boldsymbol{\hat{Y}}\)</span> of size <span class="arithmatex">\(n \times k\)</span>. For a regression problem, <span class="arithmatex">\(k = 1\)</span> and the output is interpreted as some real number. This input-output relationship can be computed in an iterative manner. This is termed as a forward pass.</p>
-<h2 id="activations">Activations<a class="headerlink" href="#activations" title="Permanent link">&para;</a></h2>
-<p>First we look at what happens at one layer of the network. At any layer, there are three steps that have to be performed in this sequence:</p>
+<h1 id="model">Model<a class="headerlink" href="#model" title="Permanent link">&para;</a></h1>
+<p>A neural network has three components:</p>
 <ul>
-<li>Accept input</li>
-<li>Linearly combine the inputs</li>
-<li>Apply the activation function</li>
+<li>layers</li>
+<li>weights</li>
+<li>activation functions</li>
 </ul>
-<p>What comes out of a layer are called the activations at that layer. The linear combination of the inputs to a layer are called the pre-activations.</p>
-<p><span class="arithmatex">\(\boldsymbol{Z_l}\)</span> and <span class="arithmatex">\(\boldsymbol{A_l}\)</span> represent the matrices of pre-activations and activations respectively at layer <span class="arithmatex">\(l\)</span> for <span class="arithmatex">\(0 \leq l \leq L\)</span>. <span class="arithmatex">\(\boldsymbol{A_0} = \boldsymbol{X}\)</span>, the feature matrix. The activation matrix <span class="arithmatex">\(\boldsymbol{A_l}\)</span> is of size <span class="arithmatex">\(n \times S_l\)</span>. Each row of the activation matrix corresponds to the activation vector for one of the <span class="arithmatex">\(n\)</span> data-points.</p>
-<h2 id="algorithm">Algorithm<a class="headerlink" href="#algorithm" title="Permanent link">&para;</a></h2>
-<p>If <span class="arithmatex">\(\boldsymbol{A_{l - 1}}\)</span> represents the activation matrix at layer <span class="arithmatex">\(l - 1\)</span>, then the activations at layer <span class="arithmatex">\(l\)</span> can be computed iteratively using the following pair of equations:</p>
+<p>Each layer is a collection of nodes, also called neurons. Layers are stacked one after the other. Neurons in successive layers are connected to each other by means of an edge. Edges have weights to denote the importance of the connections. The number of layers and their sizes determine the shape of the weights. Activation functions are independent of the layers and weights. With these three components, we can define the model equations that compute the output given the input. In the case of neural networks, this is called a forward pass and will be discussed in the next section.</p>
+<h2 id="layers">Layers<a class="headerlink" href="#layers" title="Permanent link">&para;</a></h2>
+<p>All networks have at least three layers:</p>
+<ul>
+<li>input</li>
+<li>hidden</li>
+<li>output</li>
+</ul>
+<p>The number of hidden layers is a hyperparameter. For the rest of the document, we will follow a convention to denote the layers. The model has <span class="arithmatex">\(L + 1\)</span> layers. Layers are indexed using <span class="arithmatex">\(l\)</span>.</p>
+<ul>
+<li><span class="arithmatex">\(l = 0\)</span>: input layer</li>
+<li><span class="arithmatex">\(1 \leq l \leq L - 1\)</span>: hidden layers</li>
+<li><span class="arithmatex">\(l = L\)</span>: output layer</li>
+<li><span class="arithmatex">\(S_l\)</span>: number of neurons in layer <span class="arithmatex">\(l\)</span></li>
+</ul>
+<p><span class="arithmatex">\(S_0 = m\)</span>, the number of features for the problem. <span class="arithmatex">\(S_L\)</span> can take the following values:</p>
+<ul>
+<li><span class="arithmatex">\(1\)</span>, for a regression problem</li>
+<li><span class="arithmatex">\(k\)</span>, for a multi-class classification problem</li>
+</ul>
+<h2 id="weights-and-biases">Weights and biases<a class="headerlink" href="#weights-and-biases" title="Permanent link">&para;</a></h2>
+<p>The weight matrix connecting layer <span class="arithmatex">\(l - 1\)</span> and <span class="arithmatex">\(l\)</span> is as follows:</p>
+<ul>
+<li><span class="arithmatex">\(\boldsymbol{W_l}\)</span>: weight matrix</li>
+</ul>
+<dl>
+<dd>size: <span class="arithmatex">\(S_{l - 1} \times S_{l}\)</span></dd>
+<dd><span class="arithmatex">\(W_{lij}\)</span>: weight connecting <span class="arithmatex">\(i^{th}\)</span> neuron in layer <span class="arithmatex">\((l - 1)\)</span> to <span class="arithmatex">\(j^{th}\)</span> neuron in layer <span class="arithmatex">\(l\)</span></dd>
+</dl>
+<ul>
+<li><span class="arithmatex">\(\boldsymbol{b_l}\)</span>: bias vector</li>
+</ul>
+<dl>
+<dd>size: <span class="arithmatex">\(S_l\)</span></dd>
+<dd><span class="arithmatex">\(b_{lj}\)</span>: bias of the <span class="arithmatex">\(j^{th}\)</span> neuron in layer <span class="arithmatex">\(l\)</span></dd>
+</dl>
+<p><img alt="" src="../../assets/images/img_17.svg" /></p>
+<p>There are no weights before the input layer. Weights start from the first hidden layer, <span class="arithmatex">\(l = 1\)</span>. The last weight matrix is the one connecting the final hidden layer and the output layer, <span class="arithmatex">\(l = L\)</span>. Therefore, there are <span class="arithmatex">\(L\)</span>  learnable weights and biases, namely for <span class="arithmatex">\(1 \leq l \leq L\)</span>.</p>
+<h2 id="activation-functions">Activation functions<a class="headerlink" href="#activation-functions" title="Permanent link">&para;</a></h2>
+<p>The type of the activation function depends on the layer in which it is used:</p>
+<ul>
+<li>hidden layers</li>
+<li>output layer</li>
+</ul>
+<h3 id="hidden-layers">Hidden layers<a class="headerlink" href="#hidden-layers" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\(g(z)\)</span> will be used to refer to activation function. <span class="arithmatex">\(z\)</span> is some real number.</p>
+<h4 id="sigmoid">Sigmoid<a class="headerlink" href="#sigmoid" title="Permanent link">&para;</a></h4>
 <div class="arithmatex">\[
-\begin{aligned}
-\boldsymbol{Z_{l}} &amp;= \boldsymbol{A_{l - 1} W_l} + \boldsymbol{b_l},\quad 1 \leq l \leq L\\ \\
-\boldsymbol{A_{l}} &amp;= g(\boldsymbol{Z_{l}}),\quad 1 \leq l \leq L
-\end{aligned}
+ g(z) = \cfrac{1}{1 + e^{-z}}
 \]</div>
-<p>Here, <span class="arithmatex">\(\boldsymbol{A_0} = \boldsymbol{X}\)</span>. The shapes of these matrices/vectors are as follows:</p>
+<p><img alt="" src="../../assets/images/img_8.svg" width="60%" /></p>
+<h4 id="tanh">Tanh<a class="headerlink" href="#tanh" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[
+g(z) = \tanh(z)
+\]</div>
+<p><img alt="" src="../../assets/images/img_9.svg" width="60%" /></p>
+<h4 id="relu">ReLU<a class="headerlink" href="#relu" title="Permanent link">&para;</a></h4>
+<p>The full form of ReLU is Rectified Linear Unit:</p>
+<div class="arithmatex">\[
+g(z) = \begin{cases}z,\quad z \geq 0\\0,\quad \text{otherwise}\end{cases}
+\]</div>
+<p><img alt="" src="../../assets/images/img_10.svg" width="60%" /></p>
+<p>When the argument to <span class="arithmatex">\(g\)</span> is a vector or a matrix, the activation function will be applied element-wise.</p>
+<h3 id="output-layer">Output layer<a class="headerlink" href="#output-layer" title="Permanent link">&para;</a></h3>
+<p>The activation function at the output layer depends on the type of problem being solved: regression or classification, and could be one of the following:</p>
 <ul>
-<li><span class="arithmatex">\(\boldsymbol{A_{l - 1}}\)</span>: <span class="arithmatex">\(n \times S_{l - 1}\)</span> </li>
-<li><span class="arithmatex">\(\boldsymbol{W_l}\)</span>: <span class="arithmatex">\(S_{l - 1} \times S_{l}\)</span></li>
-<li><span class="arithmatex">\(\boldsymbol{b_l}\)</span>: <span class="arithmatex">\(S_l\)</span></li>
-<li><span class="arithmatex">\(\boldsymbol{Z_l}\)</span>: <span class="arithmatex">\(n \times S_l\)</span></li>
-<li><span class="arithmatex">\(\boldsymbol{A_{l}}\)</span>: <span class="arithmatex">\(n \times S_{l}\)</span></li>
+<li>Linear: <span class="arithmatex">\(g(z) = z\)</span></li>
 </ul>
-<p>Note that <span class="arithmatex">\(\boldsymbol{b_{l}}\)</span> gets added to each row of the product <span class="arithmatex">\(\boldsymbol{A_{l - 1} W_{l}}\)</span> according to <code>NumPy</code> broadcasting rules. <span class="arithmatex">\(g\)</span> is the hidden-layer activation function for <span class="arithmatex">\(1 \leq l \leq L - 1\)</span> and the output-layer activation function for <span class="arithmatex">\(l = L\)</span>. The final shape of the output activations at layer <span class="arithmatex">\(L\)</span> is:</p>
+<p>Here, <span class="arithmatex">\(z\)</span> is a scalar activation at the output, that is, there is exactly one neuron in the output layer. This is used for regression problems.</p>
 <ul>
-<li><span class="arithmatex">\(n\)</span> for regression and binary classification problems</li>
-<li><span class="arithmatex">\(n \times k\)</span> for a multi-class classification problem</li>
+<li>Softmax: <span class="arithmatex">\(g(\boldsymbol{z}) = \begin{bmatrix} \cdots &amp; \cfrac{e^{z_i}}{\sum \limits_{r = 1}^{k} e^{z_r}} &amp; \cdots\end{bmatrix}^T\)</span></li>
 </ul>
-<p>According to our notation, <span class="arithmatex">\(\boldsymbol{A_L} = \boldsymbol{\hat{Y}}\)</span>.</p>
+<p>Here, <span class="arithmatex">\(\boldsymbol{z}\)</span> is a vector of activations at the output layer, that is, there are <span class="arithmatex">\(k\)</span> neurons in the output layer. This is used in multiclass classification problems. If the argument is a matrix, then the softmax will be applied row-wise.</p>
+<h2 id="network-architecture">Network Architecture<a class="headerlink" href="#network-architecture" title="Permanent link">&para;</a></h2>
+<p>A network architecture is a specification of the number of layers, the number of neurons in each layer, and the activation functions used at these layers. A sample is shown below:</p>
+<table>
+<thead>
+<tr>
+<th>Layer index (<span class="arithmatex">\(l\)</span>)</th>
+<th>Type</th>
+<th>Neurons</th>
+<th>Activation<br>function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(0\)</span></td>
+<td>Input</td>
+<td><span class="arithmatex">\(20\)</span></td>
+<td>NA</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(1\)</span></td>
+<td>Hidden</td>
+<td><span class="arithmatex">\(30\)</span></td>
+<td>ReLU</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(2\)</span></td>
+<td>Output</td>
+<td><span class="arithmatex">\(10\)</span></td>
+<td>Softmax</td>
+</tr>
+</tbody>
+</table>
+<p>This is an architecture for a multiclass classification network with <span class="arithmatex">\(10\)</span> classes. There is exactly one hidden layer. The number of parameters of this network can be computed as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Layer index (<span class="arithmatex">\(l\)</span>)</th>
+<th>Number of weights</th>
+<th>Number of biases</th>
+<th>Number of parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(0\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(1\)</span></td>
+<td><span class="arithmatex">\(20 \times 30 = 600\)</span></td>
+<td><span class="arithmatex">\(30\)</span></td>
+<td><span class="arithmatex">\(630\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(2\)</span></td>
+<td><span class="arithmatex">\(30 \times 10 = 300\)</span></td>
+<td><span class="arithmatex">\(10\)</span></td>
+<td><span class="arithmatex">\(310\)</span></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><strong>Total</strong></td>
+<td><span class="arithmatex">\(940\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Notice how a simple neural network with just one hidden layer has nearly <span class="arithmatex">\(1000\)</span> parameters! Neural networks with a large number of hidden layers are thus prone to overfitting. </p>
 
               
             </article>
@@ -471,7 +706,7 @@ If the feature matrix <span class="arithmatex">\(\boldsymbol{X}\)</span> of size
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../02-model/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Model" rel="prev">
+        <a href="../01-introduction/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -480,20 +715,20 @@ If the feature matrix <span class="arithmatex">\(\boldsymbol{X}\)</span> of size
               <span class="md-footer__direction">
                 Previous
               </span>
-              Model
+              Introduction
             </div>
           </div>
         </a>
       
       
         
-        <a href="../04-loss/" class="md-footer__link md-footer__link--next" aria-label="Next: Loss" rel="next">
+        <a href="../03-forward/" class="md-footer__link md-footer__link--next" aria-label="Next: Forward pass" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Loss
+              Forward pass
             </div>
           </div>
           <div class="md-footer__button md-icon">

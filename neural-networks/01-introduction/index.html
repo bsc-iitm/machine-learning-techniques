@@ -13,7 +13,7 @@
     
     
       
-        <title>Loss - Machine Learning Techniques</title>
+        <title>Introduction - Machine Learning Techniques</title>
       
     
     
@@ -59,7 +59,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#loss" class="md-skip">
+        <a href="#introduction" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Loss
+              Introduction
             
           </span>
         </div>
@@ -204,14 +204,14 @@
       
       
         <label class="md-nav__link" for="__nav_2">
-          Neural Networks
+          Neural networks
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Neural Networks" data-md-level="1">
+      <nav class="md-nav" aria-label="Neural networks" data-md-level="1">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
-          Neural Networks
+          Neural networks
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -233,11 +233,21 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../01-introduction/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Introduction
       </a>
+      
     </li>
   
 
@@ -275,59 +285,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Loss
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../04-loss/" class="md-nav__link">
         Loss
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#regression" class="md-nav__link">
-    Regression
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#multi-class-classification" class="md-nav__link">
-    Multi-class classification
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -387,28 +349,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#regression" class="md-nav__link">
-    Regression
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#multi-class-classification" class="md-nav__link">
-    Multi-class classification
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -421,28 +361,47 @@
                 
 
 
-<h1 id="loss">Loss<a class="headerlink" href="#loss" title="Permanent link">&para;</a></h1>
-<p>The loss depends on the nature of the problem being solved.</p>
-<h2 id="regression">Regression<a class="headerlink" href="#regression" title="Permanent link">&para;</a></h2>
-<p><span class="arithmatex">\(\boldsymbol{y}\)</span> is a vector of target label for <span class="arithmatex">\(n\)</span> examples. <span class="arithmatex">\(\boldsymbol{\hat{y}}\)</span> is the output of the network and corresponds to the predicted labels. Both vectors are of size <span class="arithmatex">\(n\)</span>. The loss is our usual squared error:
+<h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
+<p>Until the early 2000s, neural networks were seen as one among several species in the zoo of ML algorithms. Due to a combination of several factors, the last decade witnessed intense research activity in this area. This resulted in neural networks becoming the model of choice in many domains of data science and AI. The impact was so huge that an entire field (deep learning) has blossomed out of it. One of the most important problems that contributed to the success of this model is image classification on large datasets, specifically the <a href="https://www.image-net.org/index.php">ImageNet dataset</a>.</p>
+<p>In this course, we will study the most basic type of neural network called "feedforward networks". In a feedforward network, an input vector undergoes a sequence of transformations before it turns into the output. Each transformation is a linear combination of inputs followed by a non-linear activation function. Recall that this is similar to what happened in logistic regression. Instead of having just one unit, we have a network of units arranged in the form of layers:</p>
+<p><img alt="" src="../../assets/images/img_16.svg" /></p>
+<p>The term feedforward is used as the input is always fed forward. So, a feedforward network can also be viewed as a directed acyclic graph (DAG), with the direction of the edges always leading from the input to the output.</p>
+<h1 id="black-box">Black box<a class="headerlink" href="#black-box" title="Permanent link">&para;</a></h1>
+<p>There are two ways to look at any ML model. The easiest and somewhat superficial way is to see it as a black-box that accepts an input and gives an output. This is true of any algorithm, not just ML models. Taking this route, a neural network is a model that learns some function:
 $$
-L(\boldsymbol{y}, \boldsymbol{\hat{y}}) = \cfrac{1}{2} \cdot (\boldsymbol{\hat{y}} - \boldsymbol{y})^T (\boldsymbol{\hat{y}} - \boldsymbol{y})
+ h: \mathbb{R}^{m} \rightarrow \mathbb{R}^{k}
 $$</p>
-<h2 id="multi-class-classification">Multi-class classification<a class="headerlink" href="#multi-class-classification" title="Permanent link">&para;</a></h2>
-<p><span class="arithmatex">\(\boldsymbol{Y}\)</span> is a matrix of target labels for <span class="arithmatex">\(n\)</span> examples. Each row of this matrix is a one-hot vector. <span class="arithmatex">\(\boldsymbol{\hat{Y}}\)</span> is a matrix of predicted probabilities. Both matrices are of size <span class="arithmatex">\(n \times k\)</span>. The categorical cross-entropy loss is given as follows:
+<p>For a regression problem, <span class="arithmatex">\(k = 1\)</span>, and the output is interpreted as some real number. Given a data-point <span class="arithmatex">\(\boldsymbol{x} \in \mathbb{R}^m\)</span>, we have:</p>
+<div class="arithmatex">\[
+h(\boldsymbol{x}) = y
+\]</div>
+<p>In the case of a multi-class classification problem, the network outputs a vector of probabilities.
 $$
-L(\boldsymbol{Y}, \boldsymbol{\hat{Y}})=-\boldsymbol{1}^T_{n} \left( \boldsymbol{Y} \odot \log \boldsymbol{\hat{Y}} \right) \boldsymbol{1}_{k}
+h(\boldsymbol{x}) = \boldsymbol{\hat{y}}
 $$
-This equation can be understood as follows:</p>
-<ul>
-<li><span class="arithmatex">\(\boldsymbol{1}_n\)</span> and <span class="arithmatex">\(\boldsymbol{1}_k\)</span>  are vectors of ones of sizes <span class="arithmatex">\(n\)</span> and <span class="arithmatex">\(k\)</span> respectively.</li>
-<li>If <span class="arithmatex">\(\boldsymbol{M}\)</span> is a matrix of size <span class="arithmatex">\(n \times k\)</span>, then <span class="arithmatex">\(\boldsymbol{1}^T_{n} \boldsymbol{M} \boldsymbol{1}_k\)</span> is the sum of all elements in the matrix.</li>
-<li><span class="arithmatex">\(\odot\)</span> is the element-wise product.</li>
-</ul>
-<p>The <code>NumPy</code> equivalent of the loss is:</p>
-<pre><code class="language-python">L = -np.sum(Y * np.log(Y_hat))
+If the feature matrix <span class="arithmatex">\(\boldsymbol{X}\)</span> of size <span class="arithmatex">\(n \times m\)</span> is passed as input, we get a matrix of probabilities, <span class="arithmatex">\(\boldsymbol{\hat{Y}}\)</span> of size <span class="arithmatex">\(n \times k\)</span>. Since each row of the matrix corresponds to a probability distribution over the <span class="arithmatex">\(k\)</span> classes, the following relation holds:</p>
+<div class="arithmatex">\[
+\sum \limits_{j = 1}^{k} \hat{Y}_{ij} = 1 \quad 1 \leq i \leq n
+\]</div>
+<p>This equation can also be vectorized as follows:
+$$
+\boldsymbol{\hat{Y}} \boldsymbol{1}_{k} = \boldsymbol{1}_n
+$$
+Here, <span class="arithmatex">\(\boldsymbol{1}_k\)</span> and <span class="arithmatex">\(\boldsymbol{1}_n\)</span> are vectors of ones of sizes <span class="arithmatex">\(k\)</span> and <span class="arithmatex">\(n\)</span> respectively. For example:</p>
+<div class="arithmatex">\[
+\boldsymbol{1}_k = \begin{bmatrix}
+1\\
+\vdots\\
+1
+\end{bmatrix}
+\]</div>
+<p>In terms of <code>NumPy</code>, this is:</p>
+<pre><code class="language-python">one_k = np.ones(k)
+one_n = np.ones(n)
 </code></pre>
-<p>Note that the loss function is always a scalar. To understand why the cross-entropy takes this form, refer to the appendix.</p>
+<p>This notation helps us express the row-wise sum of a matrix. This may seem like an arbitrary point now, but this notation will keep making an appearance at various places. The <code>NumPy</code> equivalent of the expression <span class="arithmatex">\(\boldsymbol{\hat{Y}1}_k\)</span> is this:</p>
+<pre><code class="language-python">Y_hat.sum(axis = 1)
+</code></pre>
 
               
             </article>
@@ -456,7 +415,7 @@ This equation can be understood as follows:</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../03-forward/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Forward pass" rel="prev">
+        <a href="../00-preliminaries/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Preliminaries" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -465,20 +424,20 @@ This equation can be understood as follows:</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Forward pass
+              Preliminaries
             </div>
           </div>
         </a>
       
       
         
-        <a href="../05-backward/" class="md-footer__link md-footer__link--next" aria-label="Next: Optimization" rel="next">
+        <a href="../02-model/" class="md-footer__link md-footer__link--next" aria-label="Next: Model" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Optimization
+              Model
             </div>
           </div>
           <div class="md-footer__button md-icon">

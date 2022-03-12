@@ -13,7 +13,7 @@
     
     
       
-        <title>Preliminaries - Machine Learning Techniques</title>
+        <title>Forward pass - Machine Learning Techniques</title>
       
     
     
@@ -59,7 +59,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#preliminaries" class="md-skip">
+        <a href="#forward-pass" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Preliminaries
+              Forward pass
             
           </span>
         </div>
@@ -204,14 +204,14 @@
       
       
         <label class="md-nav__link" for="__nav_2">
-          Neural Networks
+          Neural networks
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Neural Networks" data-md-level="1">
+      <nav class="md-nav" aria-label="Neural networks" data-md-level="1">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
-          Neural Networks
+          Neural networks
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -219,86 +219,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Preliminaries
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../00-preliminaries/" class="md-nav__link">
         Preliminaries
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#problems" class="md-nav__link">
-    Problems
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#notation" class="md-nav__link">
-    Notation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data" class="md-nav__link">
-    Data
-  </a>
-  
-    <nav class="md-nav" aria-label="Data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#regression" class="md-nav__link">
-    Regression
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#multiclass-classification" class="md-nav__link">
-    Multiclass Classification
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -336,11 +261,59 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../03-forward/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Forward pass
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Forward pass
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#activations" class="md-nav__link">
+    Activations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithm" class="md-nav__link">
+    Algorithm
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -421,43 +394,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#problems" class="md-nav__link">
-    Problems
+  <a href="#activations" class="md-nav__link">
+    Activations
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#notation" class="md-nav__link">
-    Notation
+  <a href="#algorithm" class="md-nav__link">
+    Algorithm
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data" class="md-nav__link">
-    Data
-  </a>
-  
-    <nav class="md-nav" aria-label="Data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#regression" class="md-nav__link">
-    Regression
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#multiclass-classification" class="md-nav__link">
-    Multiclass Classification
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -475,51 +421,43 @@
                 
 
 
-<h1 id="preliminaries">Preliminaries<a class="headerlink" href="#preliminaries" title="Permanent link">&para;</a></h1>
-<h2 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h2>
-<p>We will discuss two types of problems:</p>
+<h1 id="forward-pass">Forward pass<a class="headerlink" href="#forward-pass" title="Permanent link">&para;</a></h1>
+<p>As stated earlier, the network can be seen as a function <span class="arithmatex">\(h: \mathbb{R}^{m} \rightarrow \mathbb{R}^{k}\)</span>. In the case of a multi-class classification problem, given a data-point <span class="arithmatex">\(\boldsymbol{x} \in \mathbb{R}^m\)</span>, the network outputs a vector of probabilities.
+$$
+h(\boldsymbol{x}) = \boldsymbol{\hat{y}}
+$$
+If the feature matrix <span class="arithmatex">\(\boldsymbol{X}\)</span> of size <span class="arithmatex">\(n \times m\)</span> is passed as input, we get a matrix of probabilities, <span class="arithmatex">\(\boldsymbol{\hat{Y}}\)</span> of size <span class="arithmatex">\(n \times k\)</span>. For a regression problem, <span class="arithmatex">\(k = 1\)</span> and the output is interpreted as some real number. This input-output relationship can be computed in an iterative manner. This is termed as a forward pass.</p>
+<h2 id="activations">Activations<a class="headerlink" href="#activations" title="Permanent link">&para;</a></h2>
+<p>First we look at what happens at one layer of the network. At any layer, there are three steps that have to be performed in this sequence:</p>
 <ul>
-<li>Regression</li>
-<li>Multiclass classification</li>
+<li>Accept input</li>
+<li>Linearly combine the inputs</li>
+<li>Apply the activation function</li>
 </ul>
-<p>We won't be discussing binary classification explicitly. Most of the discussion about neural networks apply to both classes of problems. There are a handful of places where the network has to be specified differently for regression and classification. Watch out for these instances.</p>
-<h2 id="notation">Notation<a class="headerlink" href="#notation" title="Permanent link">&para;</a></h2>
-<p>Scalars will be represented using normal font, lower-case letters. Vectors will be represented using bold font, lower-case letters. Matrices will be represented using bold font, upper-case letters. When indexing elements of a vector or a matrix, normal font will be used, but the case will be inherited from the object that is being indexed.</p>
+<p>What comes out of a layer are called the activations at that layer. The linear combination of the inputs to a layer are called the pre-activations.</p>
+<p><span class="arithmatex">\(\boldsymbol{Z_l}\)</span> and <span class="arithmatex">\(\boldsymbol{A_l}\)</span> represent the matrices of pre-activations and activations respectively at layer <span class="arithmatex">\(l\)</span> for <span class="arithmatex">\(0 \leq l \leq L\)</span>. <span class="arithmatex">\(\boldsymbol{A_0} = \boldsymbol{X}\)</span>, the feature matrix. The activation matrix <span class="arithmatex">\(\boldsymbol{A_l}\)</span> is of size <span class="arithmatex">\(n \times S_l\)</span>. Each row of the activation matrix corresponds to the activation vector for one of the <span class="arithmatex">\(n\)</span> data-points.</p>
+<h2 id="algorithm">Algorithm<a class="headerlink" href="#algorithm" title="Permanent link">&para;</a></h2>
+<p>If <span class="arithmatex">\(\boldsymbol{A_{l - 1}}\)</span> represents the activation matrix at layer <span class="arithmatex">\(l - 1\)</span>, then the activations at layer <span class="arithmatex">\(l\)</span> can be computed iteratively using the following pair of equations:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\boldsymbol{Z_{l}} &amp;= \boldsymbol{A_{l - 1} W_l} + \boldsymbol{b_l},\quad 1 \leq l \leq L\\ \\
+\boldsymbol{A_{l}} &amp;= g(\boldsymbol{Z_{l}}),\quad 1 \leq l \leq L
+\end{aligned}
+\]</div>
+<p>Here, <span class="arithmatex">\(\boldsymbol{A_0} = \boldsymbol{X}\)</span>. The shapes of these matrices/vectors are as follows:</p>
 <ul>
-<li>
-<p><span class="arithmatex">\(a\)</span>: scalar</p>
-</li>
-<li>
-<p><span class="arithmatex">\(\boldsymbol{a}\)</span>: vector</p>
-</li>
-<li>
-<p><span class="arithmatex">\(\boldsymbol{A}\)</span>: matrix</p>
-</li>
+<li><span class="arithmatex">\(\boldsymbol{A_{l - 1}}\)</span>: <span class="arithmatex">\(n \times S_{l - 1}\)</span> </li>
+<li><span class="arithmatex">\(\boldsymbol{W_l}\)</span>: <span class="arithmatex">\(S_{l - 1} \times S_{l}\)</span></li>
+<li><span class="arithmatex">\(\boldsymbol{b_l}\)</span>: <span class="arithmatex">\(S_l\)</span></li>
+<li><span class="arithmatex">\(\boldsymbol{Z_l}\)</span>: <span class="arithmatex">\(n \times S_l\)</span></li>
+<li><span class="arithmatex">\(\boldsymbol{A_{l}}\)</span>: <span class="arithmatex">\(n \times S_{l}\)</span></li>
 </ul>
-<p><span class="arithmatex">\(a_i\)</span>: <span class="arithmatex">\(i^{\text{th}}\)</span> component of the vector and <span class="arithmatex">\(A_{ij}\)</span>: <span class="arithmatex">\(j^{th}\)</span> element in the <span class="arithmatex">\(i^{\text{th}}\)</span> row of the matrix. Indices are used minimally as most of the equations are vectorized. This is a convention that we will largely stick to. But we might have to override them in a few occasions. In such situations, the nature of the object should be inferred from the context.</p>
-<h2 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h2>
-<p>The data-matrix is <span class="arithmatex">\(\boldsymbol{X}\)</span>:</p>
+<p>Note that <span class="arithmatex">\(\boldsymbol{b_{l}}\)</span> gets added to each row of the product <span class="arithmatex">\(\boldsymbol{A_{l - 1} W_{l}}\)</span> according to <code>NumPy</code> broadcasting rules. <span class="arithmatex">\(g\)</span> is the hidden-layer activation function for <span class="arithmatex">\(1 \leq l \leq L - 1\)</span> and the output-layer activation function for <span class="arithmatex">\(l = L\)</span>. The final shape of the output activations at layer <span class="arithmatex">\(L\)</span> is:</p>
 <ul>
-<li>size: <span class="arithmatex">\(n \times m\)</span></li>
-<li><span class="arithmatex">\(n\)</span> data-points</li>
-<li><span class="arithmatex">\(m\)</span> features</li>
+<li><span class="arithmatex">\(n\)</span> for regression and binary classification problems</li>
+<li><span class="arithmatex">\(n \times k\)</span> for a multi-class classification problem</li>
 </ul>
-<p>The data-matrix is common to both problems. Labels are represented differently in the case of regression and classification:</p>
-<h3 id="regression">Regression<a class="headerlink" href="#regression" title="Permanent link">&para;</a></h3>
-<p>The predicted labels for regression is <span class="arithmatex">\(\boldsymbol{y}\)</span>, a vector of real numbers:</p>
-<ul>
-<li>size: <span class="arithmatex">\(n\)</span></li>
-<li><span class="arithmatex">\(n\)</span> data-points</li>
-<li>single target corresponding to each point</li>
-</ul>
-<h3 id="multiclass-classification">Multiclass Classification<a class="headerlink" href="#multiclass-classification" title="Permanent link">&para;</a></h3>
-<p>The one-hot matrix of labels for a multiclass classification problem is <span class="arithmatex">\(\boldsymbol{Y}\)</span>:</p>
-<ul>
-<li>size: <span class="arithmatex">\(n \times k\)</span></li>
-<li><span class="arithmatex">\(n\)</span> data-points</li>
-<li><span class="arithmatex">\(k\)</span> classes</li>
-</ul>
-<p>Each row of the matrix is a one-hot vector.</p>
+<p>According to our notation, <span class="arithmatex">\(\boldsymbol{A_L} = \boldsymbol{\hat{Y}}\)</span>.</p>
 
               
             </article>
@@ -533,7 +471,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Machine Learning Techniques" rel="prev">
+        <a href="../02-model/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Model" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -542,20 +480,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Machine Learning Techniques
+              Model
             </div>
           </div>
         </a>
       
       
         
-        <a href="../01-introduction/" class="md-footer__link md-footer__link--next" aria-label="Next: Introduction" rel="next">
+        <a href="../04-loss/" class="md-footer__link md-footer__link--next" aria-label="Next: Loss" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Introduction
+              Loss
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -13,7 +13,7 @@
     
     
       
-        <title>Introduction - Machine Learning Techniques</title>
+        <title>Optimization - Machine Learning Techniques</title>
       
     
     
@@ -59,7 +59,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#introduction" class="md-skip">
+        <a href="#optimization" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Introduction
+              Optimization
             
           </span>
         </div>
@@ -204,14 +204,14 @@
       
       
         <label class="md-nav__link" for="__nav_2">
-          Neural Networks
+          Neural networks
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Neural Networks" data-md-level="1">
+      <nav class="md-nav" aria-label="Neural networks" data-md-level="1">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
-          Neural Networks
+          Neural networks
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -233,21 +233,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../01-introduction/" class="md-nav__link">
         Introduction
       </a>
-      
     </li>
   
 
@@ -299,11 +289,92 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../05-backward/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Optimization
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Optimization
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#backward-pass" class="md-nav__link">
+    Backward pass
+  </a>
+  
+    <nav class="md-nav" aria-label="Backward pass">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hidden-layers" class="md-nav__link">
+    Hidden Layers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-layer" class="md-nav__link">
+    Output layer
+  </a>
+  
+    <nav class="md-nav" aria-label="Output layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regression" class="md-nav__link">
+    Regression
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiclass-classification" class="md-nav__link">
+    Multiclass classification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -349,6 +420,61 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#backward-pass" class="md-nav__link">
+    Backward pass
+  </a>
+  
+    <nav class="md-nav" aria-label="Backward pass">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hidden-layers" class="md-nav__link">
+    Hidden Layers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-layer" class="md-nav__link">
+    Output layer
+  </a>
+  
+    <nav class="md-nav" aria-label="Output layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regression" class="md-nav__link">
+    Regression
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiclass-classification" class="md-nav__link">
+    Multiclass classification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -361,47 +487,60 @@
                 
 
 
-<h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
-<p>Until the early 2000s, neural networks were seen as one among several species in the zoo of ML algorithms. Due to a combination of several factors, the last decade witnessed intense research activity in this area. This resulted in neural networks becoming the model of choice in many domains of data science and AI. The impact was so huge that an entire field (deep learning) has blossomed out of it. One of the most important problems that contributed to the success of this model is image classification on large datasets, specifically the <a href="https://www.image-net.org/index.php">ImageNet dataset</a>.</p>
-<p>In this course, we will study the most basic type of neural network called "feedforward networks". In a feedforward network, an input vector undergoes a sequence of transformations before it turns into the output. Each transformation is a linear combination of inputs followed by a non-linear activation function. Recall that this is similar to what happened in logistic regression. Instead of having just one unit, we have a network of units arranged in the form of layers:</p>
-<p><img alt="" src="/assets/images/img_16.svg" /></p>
-<p>The term feedforward is used as the input is always fed forward. So, a feedforward network can also be viewed as a directed acyclic graph (DAG), with the direction of the edges always leading from the input to the output.</p>
-<h1 id="black-box">Black box<a class="headerlink" href="#black-box" title="Permanent link">&para;</a></h1>
-<p>There are two ways to look at any ML model. The easiest and somewhat superficial way is to see it as a black-box that accepts an input and gives an output. This is true of any algorithm, not just ML models. Taking this route, a neural network is a model that learns some function:
+<h1 id="optimization">Optimization<a class="headerlink" href="#optimization" title="Permanent link">&para;</a></h1>
+<p>As we have been doing all along, gradient descent will be our optimizer. We need to compute the gradients of the loss with respect to the weights and the biases. Imagine doing this for a network with thousands of parameters. We would have to find the derivative of the loss with respect to <span class="arithmatex">\(1000\)</span> different variables. This seems like a computational nightmare.</p>
+<p>Thankfully, researchers have developed an efficient algorithm called <strong>backpropagation</strong> that does the job for us. At its heart, backpropagation uses the chain rule of derivatives to compute the gradients. The idea is to first begin with the gradients at the final layer and keep propagating them all the way back to the first layer. This sequence of operations is termed a backward pass, as we start from the final layer and let the gradients flow all the way back to the first layer. Just like we had a "forward pass" to compute the output given the input, we have a "backward pass" to compute the gradients of the loss.</p>
+<h2 id="backward-pass">Backward pass<a class="headerlink" href="#backward-pass" title="Permanent link">&para;</a></h2>
+<p>We need to compute the gradients of the loss function with respect to the weights. The backward pass can be divided into two parts:</p>
+<h3 id="hidden-layers">Hidden Layers<a class="headerlink" href="#hidden-layers" title="Permanent link">&para;</a></h3>
+<p>The weights at layer <span class="arithmatex">\(l\)</span>, <span class="arithmatex">\(\boldsymbol{W_{l}^{(g)}}\)</span>, influence the loss via the matrix of activations, <span class="arithmatex">\(\boldsymbol{A_{l}}\)</span>, at layer <span class="arithmatex">\(l\)</span>. The equation that connects these two quantities is given below and should be familiar to you by now:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\boldsymbol{Z_{l}} &amp;= \boldsymbol{A_{l - 1} W_l} + \boldsymbol{b_l},\quad 1 \leq l \leq L\\ \\
+\boldsymbol{A_{l}} &amp;= g(\boldsymbol{Z_{l}}),\quad 1 \leq l \leq L
+\end{aligned}
+\]</div>
+<p>Let us assume that we already have access to the gradient of the loss with respect to the activations at layer <span class="arithmatex">\(l\)</span>. Let us call it <span class="arithmatex">\(\boldsymbol{A_{l}^{(g)}}\)</span>. If we need the gradient of the loss with respect to the weights at layer <span class="arithmatex">\(l\)</span>, then by the chain rule of differentiation, we need to compute the gradients with respect to the pre-activations at layer <span class="arithmatex">\(l\)</span>. We shall use the following notation for the gradients at layer <span class="arithmatex">\(l\)</span>:</p>
+<ul>
+<li><span class="arithmatex">\(\boldsymbol{W_{l}^{(g)}}\)</span>: gradient of the loss with respect to the weights</li>
+<li><span class="arithmatex">\(\boldsymbol{Z_{l}^{(g)}}\)</span>: gradient of the loss with respect to the pre-activations</li>
+<li><span class="arithmatex">\(\boldsymbol{A_{l}^{(g)}}\)</span>: gradient of the loss with respect to the activations</li>
+</ul>
+<p>The rule is quite simple to state. It is just a product, the first one is element-wise multiplication of two matrices, the second one is usual matrix multiplication:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\boldsymbol{Z_{l}^{(g)}} &amp;= \boldsymbol{A_{l}^{(g)}} \odot g^{\prime}(\boldsymbol{Z_{l}})\\ \\
+\boldsymbol{W_l^{(g)}} &amp;= \boldsymbol{A_{l - 1}}^T \boldsymbol{Z_{l}^{(g)}}
+\end{aligned}
+\]</div>
+<p>To see why the first of these two equations makes sense, recall that the activation function is applied element-wise on the pre-activations in the forward pass. This process is reversed for the backward pass: the derivative of the activation function is multiplied element-wise with the gradients of the activations. The second equation might seem more foreboding at the moment. A reasonable intuition is to forget that these quantities are matrices and think of them as scalars. Consider the following simplification: <span class="arithmatex">\(z = aw + b\)</span>
 $$
- h: \mathbb{R}^{m} \rightarrow \mathbb{R}^{k}
+w^{(g)} = \cfrac{\partial L}{\partial w} = \cfrac{\partial L}{\partial z} \cfrac{\partial z}{\partial w} = z^{(g)} a
+$$
+With matrices, this simple scalar product becomes a matrix product. One way to remember the exact form is to make sure that the dimensions of all the matrices are compatible for matrix multiplication.</p>
+<p>To propagate this process to earlier layers, we also need <span class="arithmatex">\(\boldsymbol{A_{l - 1}^{(g)}}\)</span>. The expression for that is quite similar:</p>
+<div class="arithmatex">\[
+\boldsymbol{A_{l - 1}^{(g)}} = \boldsymbol{Z_{l}^{(g)}} \boldsymbol{W_{l}}^T
+\]</div>
+<p>Now, you can see why the algorithm is termed back-propagation. We start with the gradients at a layer and keep "propagating" them back until we hit the input layer. We have ignored the gradients of the loss with respect to the biases. That is left as an exercise to the reader.</p>
+<h3 id="output-layer">Output layer<a class="headerlink" href="#output-layer" title="Permanent link">&para;</a></h3>
+<p>The only thing that remains is to compute the gradient of the loss with respect to the activations in the last layer. This is in fact the first step of the back-propagation algorithm. The gradients depend on the form of the loss, which in turn depends on the type of problem being solved:</p>
+<h4 id="regression">Regression<a class="headerlink" href="#regression" title="Permanent link">&para;</a></h4>
+<p>Recall that <span class="arithmatex">\(\boldsymbol{A_L} = \boldsymbol{\hat{y}}\)</span>. The activations at the last layer are the predicted labels.</p>
+<div class="arithmatex">\[
+\boldsymbol{A_L^{(g)}} = \boldsymbol{\hat{y}} - \boldsymbol{y}
+\]</div>
+<p>As the output-activation function is linear, computing the gradient of the activations and weights for the penultimate layer in the network is straightforward. In fact, <span class="arithmatex">\(\boldsymbol{Z_{L}^{(g)}} = \boldsymbol{A_L^{(g)}}\)</span>.</p>
+<h4 id="multiclass-classification">Multiclass classification<a class="headerlink" href="#multiclass-classification" title="Permanent link">&para;</a></h4>
+<p>Recall that <span class="arithmatex">\(\boldsymbol{A_L} = \boldsymbol{\hat{Y}}\)</span>. The activations at the last layer are the predicted probabilities.</p>
+<div class="arithmatex">\[
+\boldsymbol{A_L^{(g)}} = - \boldsymbol{Y} \odot \boldsymbol{\hat{Y}}^{\odot -1}
+\]</div>
+<p>This notation might be new. <span class="arithmatex">\(P^{\odot -1}\)</span> is element-wise inverse. <span class="arithmatex">\(P^{\odot -1}_{ij} = \frac{1}{P_{ij}}\)</span>. This inverse arises from differentiating the the <span class="arithmatex">\(\log\)</span> term in the loss function. As the output-activation function is softmax, computing the gradients of the pre-activations is less straightforward. Refer to appendix for a detailed derivation of the same. The expression for the gradients turns out to be very simple in the end:
+$$
+\boldsymbol{Z_L^{(g)}} = \boldsymbol{\hat{Y}} - \boldsymbol{Y}
 $$</p>
-<p>For a regression problem, <span class="arithmatex">\(k = 1\)</span>, and the output is interpreted as some real number. Given a data-point <span class="arithmatex">\(\boldsymbol{x} \in \mathbb{R}^m\)</span>, we have:</p>
-<div class="arithmatex">\[
-h(\boldsymbol{x}) = y
-\]</div>
-<p>In the case of a multi-class classification problem, the network outputs a vector of probabilities.
-$$
-h(\boldsymbol{x}) = \boldsymbol{\hat{y}}
-$$
-If the feature matrix <span class="arithmatex">\(\boldsymbol{X}\)</span> of size <span class="arithmatex">\(n \times m\)</span> is passed as input, we get a matrix of probabilities, <span class="arithmatex">\(\boldsymbol{\hat{Y}}\)</span> of size <span class="arithmatex">\(n \times k\)</span>. Since each row of the matrix corresponds to a probability distribution over the <span class="arithmatex">\(k\)</span> classes, the following relation holds:</p>
-<div class="arithmatex">\[
-\sum \limits_{j = 1}^{k} \hat{Y}_{ij} = 1 \quad 1 \leq i \leq n
-\]</div>
-<p>This equation can also be vectorized as follows:
-$$
-\boldsymbol{\hat{Y}} \boldsymbol{1}_{k} = \boldsymbol{1}_n
-$$
-Here, <span class="arithmatex">\(\boldsymbol{1}_k\)</span> and <span class="arithmatex">\(\boldsymbol{1}_n\)</span> are vectors of ones of sizes <span class="arithmatex">\(k\)</span> and <span class="arithmatex">\(n\)</span> respectively. For example:</p>
-<div class="arithmatex">\[
-\boldsymbol{1}_k = \begin{bmatrix}
-1\\
-\vdots\\
-1
-\end{bmatrix}
-\]</div>
-<p>In terms of <code>NumPy</code>, this is:</p>
-<pre><code class="language-python">one_k = np.ones(k)
-one_n = np.ones(n)
-</code></pre>
-<p>This notation helps us express the row-wise sum of a matrix. This may seem like an arbitrary point now, but this notation will keep making an appearance at various places. The <code>NumPy</code> equivalent of the expression <span class="arithmatex">\(\boldsymbol{\hat{Y}1}_k\)</span> is this:</p>
-<pre><code class="language-python">Y_hat.sum(axis = 1)
-</code></pre>
+<p>Note how similar the expressions are for regression and classification. We will take advantage of this fact during our implementation of neural networks.</p>
 
               
             </article>
@@ -415,7 +554,7 @@ one_n = np.ones(n)
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../00-preliminaries/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Preliminaries" rel="prev">
+        <a href="../04-loss/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Loss" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -424,20 +563,20 @@ one_n = np.ones(n)
               <span class="md-footer__direction">
                 Previous
               </span>
-              Preliminaries
+              Loss
             </div>
           </div>
         </a>
       
       
         
-        <a href="../02-model/" class="md-footer__link md-footer__link--next" aria-label="Next: Model" rel="next">
+        <a href="../06-appendix/" class="md-footer__link md-footer__link--next" aria-label="Next: Appendix" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Model
+              Appendix
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -62,7 +62,7 @@ The weight matrix connecting layer $l - 1$ and $l$ is as follows:
 
 
 
-![](/assets/images/img_17.svg)
+![](../assets/images/img_17.svg)
 
 
 
@@ -93,7 +93,7 @@ $$
 
 
 
-![](/assets/images/img_8.svg){width="60%"}
+![](../assets/images/img_8.svg){width="60%"}
 
 
 
@@ -105,7 +105,7 @@ $$
 
 
 
-![](/assets/images/img_9.svg){width="60%"}
+![](../assets/images/img_9.svg){width="60%"}
 
 
 
@@ -121,7 +121,7 @@ $$
 
 
 
-![](/assets/images/img_10.svg){width="60%"}
+![](../assets/images/img_10.svg){width="60%"}
 
 
 

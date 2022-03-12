@@ -6,7 +6,7 @@ In this course, we will study the most basic type of neural network called "feed
 
 
 
-![](/assets/images/img_16.svg)
+![](../assets/images/img_16.svg)
 
 
 
