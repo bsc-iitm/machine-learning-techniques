@@ -47,5 +47,8 @@ Note that $\boldsymbol{b_{l}}$ gets added to each row of the product $\boldsymbo
 - $n$ for regression and binary classification problems
 - $n \times k$ for a multi-class classification problem
 
-According to our notation, $\boldsymbol{A_L} = \boldsymbol{\hat{Y}}$.
+According to our notation, $\boldsymbol{A_L} = \boldsymbol{\hat{Y}}$. The algorithm can now be specfieid as given below:
 
+
+
+![](../assets/images/img_19.png){width="40%"}

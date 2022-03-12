@@ -13,7 +13,7 @@
     
     
       
-        <title>Optimization - Machine Learning Techniques</title>
+        <title>Backward pass - Machine Learning Techniques</title>
       
     
     
@@ -59,7 +59,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#optimization" class="md-skip">
+        <a href="#backward-pass" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Optimization
+              Backward pass
             
           </span>
         </div>
@@ -301,12 +301,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Optimization
+          Backward pass
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Optimization
+        Backward pass
       </a>
       
         
@@ -325,21 +325,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#backward-pass" class="md-nav__link">
-    Backward pass
-  </a>
-  
-    <nav class="md-nav" aria-label="Backward pass">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#hidden-layers" class="md-nav__link">
     Hidden Layers
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#output-layer" class="md-nav__link">
     Output layer
   </a>
@@ -365,9 +357,11 @@
     </nav>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#algorithm" class="md-nav__link">
+    Algorithm
+  </a>
   
 </li>
       
@@ -386,7 +380,21 @@
   
   
     <li class="md-nav__item">
-      <a href="../06-appendix/" class="md-nav__link">
+      <a href="../06-learning-algo/" class="md-nav__link">
+        Learning Algorithm
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-appendix/" class="md-nav__link">
         Appendix
       </a>
     </li>
@@ -427,21 +435,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#backward-pass" class="md-nav__link">
-    Backward pass
-  </a>
-  
-    <nav class="md-nav" aria-label="Backward pass">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#hidden-layers" class="md-nav__link">
     Hidden Layers
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#output-layer" class="md-nav__link">
     Output layer
   </a>
@@ -467,9 +467,11 @@
     </nav>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#algorithm" class="md-nav__link">
+    Algorithm
+  </a>
   
 </li>
       
@@ -487,42 +489,39 @@
                 
 
 
-<h1 id="optimization">Optimization<a class="headerlink" href="#optimization" title="Permanent link">&para;</a></h1>
+<h1 id="backward-pass">Backward pass<a class="headerlink" href="#backward-pass" title="Permanent link">&para;</a></h1>
 <p>As we have been doing all along, gradient descent will be our optimizer. We need to compute the gradients of the loss with respect to the weights and the biases. Imagine doing this for a network with thousands of parameters. We would have to find the derivative of the loss with respect to <span class="arithmatex">\(1000\)</span> different variables. This seems like a computational nightmare.</p>
-<p>Thankfully, researchers have developed an efficient algorithm called <strong>backpropagation</strong> that does the job for us. At its heart, backpropagation uses the chain rule of derivatives to compute the gradients. The idea is to first begin with the gradients at the final layer and keep propagating them all the way back to the first layer. This sequence of operations is termed a backward pass, as we start from the final layer and let the gradients flow all the way back to the first layer. Just like we had a "forward pass" to compute the output given the input, we have a "backward pass" to compute the gradients of the loss.</p>
-<h2 id="backward-pass">Backward pass<a class="headerlink" href="#backward-pass" title="Permanent link">&para;</a></h2>
-<p>We need to compute the gradients of the loss function with respect to the weights. The backward pass can be divided into two parts:</p>
+<p>Thankfully, researchers have developed an efficient algorithm called <strong>backpropagation</strong> that does the job for us. At its heart, backpropagation uses the chain rule of differentiation to compute the gradients. The idea is to first begin with the gradients at the final layer and keep propagating them all the way back to the first layer. This sequence of operations is termed a backward pass, as we start from the final layer and let the gradients flow all the way back to the first layer. Just as we had a "forward pass" to compute the output given the input, we have a "backward pass" to compute the gradients of the loss with respect to the weights. The backward pass can be divided into two parts:</p>
 <h3 id="hidden-layers">Hidden Layers<a class="headerlink" href="#hidden-layers" title="Permanent link">&para;</a></h3>
-<p>The weights at layer <span class="arithmatex">\(l\)</span>, <span class="arithmatex">\(\boldsymbol{W_{l}^{(g)}}\)</span>, influence the loss via the matrix of activations, <span class="arithmatex">\(\boldsymbol{A_{l}}\)</span>, at layer <span class="arithmatex">\(l\)</span>. The equation that connects these two quantities is given below and should be familiar to you by now:</p>
+<p>The weights at layer <span class="arithmatex">\(l\)</span>, <span class="arithmatex">\(\boldsymbol{W_{l}}\)</span>, influence the loss via the matrix of activations, <span class="arithmatex">\(\boldsymbol{A_{l}}\)</span>, at layer <span class="arithmatex">\(l\)</span>. The equation that connects these two quantities is given below and should be familiar to you by now:</p>
 <div class="arithmatex">\[
 \begin{aligned}
 \boldsymbol{Z_{l}} &amp;= \boldsymbol{A_{l - 1} W_l} + \boldsymbol{b_l},\quad 1 \leq l \leq L\\ \\
 \boldsymbol{A_{l}} &amp;= g(\boldsymbol{Z_{l}}),\quad 1 \leq l \leq L
 \end{aligned}
 \]</div>
-<p>Let us assume that we already have access to the gradient of the loss with respect to the activations at layer <span class="arithmatex">\(l\)</span>. Let us call it <span class="arithmatex">\(\boldsymbol{A_{l}^{(g)}}\)</span>. If we need the gradient of the loss with respect to the weights at layer <span class="arithmatex">\(l\)</span>, then by the chain rule of differentiation, we need to compute the gradients with respect to the pre-activations at layer <span class="arithmatex">\(l\)</span>. We shall use the following notation for the gradients at layer <span class="arithmatex">\(l\)</span>:</p>
+<p>Let us assume that we already have access to the gradient of the loss with respect to the activations at layer <span class="arithmatex">\(l\)</span>. Let us call it <span class="arithmatex">\(\boldsymbol{A_{l}^{(g)}}\)</span>. This is a matrix of the same shape as <span class="arithmatex">\(\boldsymbol{A_{l}}\)</span>. If we need the gradient of the loss with respect to the weights at layer <span class="arithmatex">\(l\)</span>, then by the chain rule of differentiation, we need to compute the gradients with respect to the pre-activations at layer <span class="arithmatex">\(l\)</span>. We shall use the following notation for the gradients at layer <span class="arithmatex">\(l\)</span>:</p>
 <ul>
 <li><span class="arithmatex">\(\boldsymbol{W_{l}^{(g)}}\)</span>: gradient of the loss with respect to the weights</li>
 <li><span class="arithmatex">\(\boldsymbol{Z_{l}^{(g)}}\)</span>: gradient of the loss with respect to the pre-activations</li>
 <li><span class="arithmatex">\(\boldsymbol{A_{l}^{(g)}}\)</span>: gradient of the loss with respect to the activations</li>
 </ul>
-<p>The rule is quite simple to state. It is just a product, the first one is element-wise multiplication of two matrices, the second one is usual matrix multiplication:</p>
+<p>The rule is quite simple to state. It is just a product, the first one is element-wise product of two matrices, the second one is our usual matrix multiplication:</p>
 <div class="arithmatex">\[
 \begin{aligned}
 \boldsymbol{Z_{l}^{(g)}} &amp;= \boldsymbol{A_{l}^{(g)}} \odot g^{\prime}(\boldsymbol{Z_{l}})\\ \\
 \boldsymbol{W_l^{(g)}} &amp;= \boldsymbol{A_{l - 1}}^T \boldsymbol{Z_{l}^{(g)}}
 \end{aligned}
 \]</div>
-<p>To see why the first of these two equations makes sense, recall that the activation function is applied element-wise on the pre-activations in the forward pass. This process is reversed for the backward pass: the derivative of the activation function is multiplied element-wise with the gradients of the activations. The second equation might seem more foreboding at the moment. A reasonable intuition is to forget that these quantities are matrices and think of them as scalars. Consider the following simplification: <span class="arithmatex">\(z = aw + b\)</span>
+<p>To see why the first of these two equations makes sense, recall that the activation function is applied element-wise on the pre-activations in the forward pass. This process is reversed for the backward pass: the derivative of the activation function is multiplied element-wise with the gradients of the activations. The second equation might seem more foreboding. A reasonable intuition is to forget that these quantities are matrices and to instead think of them as scalars. Consider the following simplification: <span class="arithmatex">\(z = aw + b\)</span>
 $$
 w^{(g)} = \cfrac{\partial L}{\partial w} = \cfrac{\partial L}{\partial z} \cfrac{\partial z}{\partial w} = z^{(g)} a
 $$
-With matrices, this simple scalar product becomes a matrix product. One way to remember the exact form is to make sure that the dimensions of all the matrices are compatible for matrix multiplication.</p>
-<p>To propagate this process to earlier layers, we also need <span class="arithmatex">\(\boldsymbol{A_{l - 1}^{(g)}}\)</span>. The expression for that is quite similar:</p>
+With matrices, this simple scalar product becomes a matrix product. One way to remember the exact form is to make sure that the dimensions of all the matrices are compatible for matrix multiplication. To propagate this process to earlier layers, we also need <span class="arithmatex">\(\boldsymbol{A_{l - 1}^{(g)}}\)</span>. The expression for that is quite similar:</p>
 <div class="arithmatex">\[
 \boldsymbol{A_{l - 1}^{(g)}} = \boldsymbol{Z_{l}^{(g)}} \boldsymbol{W_{l}}^T
 \]</div>
-<p>Now, you can see why the algorithm is termed back-propagation. We start with the gradients at a layer and keep "propagating" them back until we hit the input layer. We have ignored the gradients of the loss with respect to the biases. That is left as an exercise to the reader.</p>
+<p>Now, you can see why the algorithm is termed backpropagation. We start with the gradients at a layer and keep "propagating" them back until we hit the input layer. We have ignored the gradients of the loss with respect to the biases. That is left as an exercise to the reader.</p>
 <h3 id="output-layer">Output layer<a class="headerlink" href="#output-layer" title="Permanent link">&para;</a></h3>
 <p>The only thing that remains is to compute the gradient of the loss with respect to the activations in the last layer. This is in fact the first step of the back-propagation algorithm. The gradients depend on the form of the loss, which in turn depends on the type of problem being solved:</p>
 <h4 id="regression">Regression<a class="headerlink" href="#regression" title="Permanent link">&para;</a></h4>
@@ -541,6 +540,9 @@ $$
 \boldsymbol{Z_L^{(g)}} = \boldsymbol{\hat{Y}} - \boldsymbol{Y}
 $$</p>
 <p>Note how similar the expressions are for regression and classification. We will take advantage of this fact during our implementation of neural networks.</p>
+<h2 id="algorithm">Algorithm<a class="headerlink" href="#algorithm" title="Permanent link">&para;</a></h2>
+<p>We can now put together all these equations together and specify the algorithm for backward pass:</p>
+<p><img alt="" src="../../assets/images/img_20.png" width="40%" /></p>
 
               
             </article>
@@ -570,13 +572,13 @@ $$</p>
       
       
         
-        <a href="../06-appendix/" class="md-footer__link md-footer__link--next" aria-label="Next: Appendix" rel="next">
+        <a href="../06-learning-algo/" class="md-footer__link md-footer__link--next" aria-label="Next: Learning Algorithm" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Appendix
+              Learning Algorithm
             </div>
           </div>
           <div class="md-footer__button md-icon">

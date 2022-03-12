@@ -1,20 +1,14 @@
-# Optimization
+# Backward pass
 
 As we have been doing all along, gradient descent will be our optimizer. We need to compute the gradients of the loss with respect to the weights and the biases. Imagine doing this for a network with thousands of parameters. We would have to find the derivative of the loss with respect to $1000$ different variables. This seems like a computational nightmare.
 
-Thankfully, researchers have developed an efficient algorithm called **backpropagation** that does the job for us. At its heart, backpropagation uses the chain rule of derivatives to compute the gradients. The idea is to first begin with the gradients at the final layer and keep propagating them all the way back to the first layer. This sequence of operations is termed a backward pass, as we start from the final layer and let the gradients flow all the way back to the first layer. Just like we had a "forward pass" to compute the output given the input, we have a "backward pass" to compute the gradients of the loss.
-
-
-
-## Backward pass
-
-We need to compute the gradients of the loss function with respect to the weights. The backward pass can be divided into two parts:
+Thankfully, researchers have developed an efficient algorithm called **backpropagation** that does the job for us. At its heart, backpropagation uses the chain rule of differentiation to compute the gradients. The idea is to first begin with the gradients at the final layer and keep propagating them all the way back to the first layer. This sequence of operations is termed a backward pass, as we start from the final layer and let the gradients flow all the way back to the first layer. Just as we had a "forward pass" to compute the output given the input, we have a "backward pass" to compute the gradients of the loss with respect to the weights. The backward pass can be divided into two parts:
 
 
 
 ### Hidden Layers
 
-The weights at layer $l$, $\boldsymbol{W_{l}^{(g)}}$, influence the loss via the matrix of activations, $\boldsymbol{A_{l}}$, at layer $l$. The equation that connects these two quantities is given below and should be familiar to you by now:
+The weights at layer $l$, $\boldsymbol{W_{l}}$, influence the loss via the matrix of activations, $\boldsymbol{A_{l}}$, at layer $l$. The equation that connects these two quantities is given below and should be familiar to you by now:
 
 
 $$
@@ -24,7 +18,7 @@ $$
 \end{aligned}
 $$
 
-Let us assume that we already have access to the gradient of the loss with respect to the activations at layer $l$. Let us call it $\boldsymbol{A_{l}^{(g)}}$. If we need the gradient of the loss with respect to the weights at layer $l$, then by the chain rule of differentiation, we need to compute the gradients with respect to the pre-activations at layer $l$. We shall use the following notation for the gradients at layer $l$:
+Let us assume that we already have access to the gradient of the loss with respect to the activations at layer $l$. Let us call it $\boldsymbol{A_{l}^{(g)}}$. This is a matrix of the same shape as $\boldsymbol{A_{l}}$. If we need the gradient of the loss with respect to the weights at layer $l$, then by the chain rule of differentiation, we need to compute the gradients with respect to the pre-activations at layer $l$. We shall use the following notation for the gradients at layer $l$:
 
 
 
@@ -34,7 +28,7 @@ Let us assume that we already have access to the gradient of the loss with respe
 
 
 
-The rule is quite simple to state. It is just a product, the first one is element-wise multiplication of two matrices, the second one is usual matrix multiplication:
+The rule is quite simple to state. It is just a product, the first one is element-wise product of two matrices, the second one is our usual matrix multiplication:
 
 
 $$
@@ -46,13 +40,11 @@ $$
 
 
 
-To see why the first of these two equations makes sense, recall that the activation function is applied element-wise on the pre-activations in the forward pass. This process is reversed for the backward pass: the derivative of the activation function is multiplied element-wise with the gradients of the activations. The second equation might seem more foreboding at the moment. A reasonable intuition is to forget that these quantities are matrices and think of them as scalars. Consider the following simplification: $z = aw + b$
+To see why the first of these two equations makes sense, recall that the activation function is applied element-wise on the pre-activations in the forward pass. This process is reversed for the backward pass: the derivative of the activation function is multiplied element-wise with the gradients of the activations. The second equation might seem more foreboding. A reasonable intuition is to forget that these quantities are matrices and to instead think of them as scalars. Consider the following simplification: $z = aw + b$
 $$
 w^{(g)} = \cfrac{\partial L}{\partial w} = \cfrac{\partial L}{\partial z} \cfrac{\partial z}{\partial w} = z^{(g)} a
 $$
-With matrices, this simple scalar product becomes a matrix product. One way to remember the exact form is to make sure that the dimensions of all the matrices are compatible for matrix multiplication.
-
-To propagate this process to earlier layers, we also need $\boldsymbol{A_{l - 1}^{(g)}}$. The expression for that is quite similar:
+With matrices, this simple scalar product becomes a matrix product. One way to remember the exact form is to make sure that the dimensions of all the matrices are compatible for matrix multiplication. To propagate this process to earlier layers, we also need $\boldsymbol{A_{l - 1}^{(g)}}$. The expression for that is quite similar:
 
 
 $$
@@ -60,7 +52,7 @@ $$
 $$
 
 
-Now, you can see why the algorithm is termed back-propagation. We start with the gradients at a layer and keep "propagating" them back until we hit the input layer. We have ignored the gradients of the loss with respect to the biases. That is left as an exercise to the reader.
+Now, you can see why the algorithm is termed backpropagation. We start with the gradients at a layer and keep "propagating" them back until we hit the input layer. We have ignored the gradients of the loss with respect to the biases. That is left as an exercise to the reader.
 
 
 
@@ -100,3 +92,11 @@ $$
 $$
 
 Note how similar the expressions are for regression and classification. We will take advantage of this fact during our implementation of neural networks.
+
+
+
+## Algorithm
+
+We can now put together all these equations together and specify the algorithm for backward pass:
+
+![](../assets/images/img_20.png){width="40%"}
