@@ -2,6 +2,7 @@ site_name: Machine Learning Techniques
 
 theme:
     name: material
+    logo: assets/images/logo.png
 
 markdown_extensions:
   - pymdownx.arithmatex:
@@ -16,4 +17,5 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 
