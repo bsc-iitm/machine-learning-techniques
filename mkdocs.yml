@@ -12,10 +12,26 @@ markdown_extensions:
   - def_list
   - attr_list
   - md_in_html
+  - admonition
 
 extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
-
+nav:
+  - Home: index.md
+  - Week-3:
+    - week-3/week-3_1.md
+    - week-3/week-3_2.md
+    - week-3/week-3_3.md
+    - week-3/week-3_4.md
+  - Week-12:
+    - week-12/preliminaries.md
+    - week-12/introduction.md
+    - week-12/model.md
+    - week-12/forward.md
+    - week-12/loss.md
+    - week-12/backward.md
+    - week-12/learning-algo.md
+    - week-12/appendix.md

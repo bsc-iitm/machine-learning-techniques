@@ -1,0 +1,832 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.13">
+    
+    
+      
+        <title>Appendix - Machine Learning Techniques</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e411adfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#appendix" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Machine Learning Techniques" class="md-header__button md-logo" aria-label="Machine Learning Techniques" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Machine Learning Techniques
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Appendix
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Machine Learning Techniques" class="md-nav__button md-logo" aria-label="Machine Learning Techniques" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Machine Learning Techniques
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Week-3
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week-3" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Week-3
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../week-3/week-3_1/" class="md-nav__link">
+        Polynomial regression
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../week-3/week-3_2/" class="md-nav__link">
+        Generating Polynomial Transformations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../week-3/week-3_3/" class="md-nav__link">
+        Finding degree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../week-3/week-3_4/" class="md-nav__link">
+        Learning curves
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Week-12
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week-12" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Week-12
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preliminaries/" class="md-nav__link">
+        Preliminaries
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model/" class="md-nav__link">
+        Model
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forward/" class="md-nav__link">
+        Forward pass
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loss/" class="md-nav__link">
+        Loss
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backward/" class="md-nav__link">
+        Backward pass
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-algo/" class="md-nav__link">
+        Learning Algorithm
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Appendix
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Appendix
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#categorical-cross-entropy" class="md-nav__link">
+    Categorical Cross Entropy
+  </a>
+  
+    <nav class="md-nav" aria-label="Categorical Cross Entropy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part-1" class="md-nav__link">
+    Part-1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-2" class="md-nav__link">
+    Part-2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-3" class="md-nav__link">
+    Part-3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-4" class="md-nav__link">
+    Part-4
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chain-rule-for-matrix-product" class="md-nav__link">
+    Chain rule for matrix product
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gradient-for-softmax-layer" class="md-nav__link">
+    Gradient for softmax layer
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#categorical-cross-entropy" class="md-nav__link">
+    Categorical Cross Entropy
+  </a>
+  
+    <nav class="md-nav" aria-label="Categorical Cross Entropy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part-1" class="md-nav__link">
+    Part-1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-2" class="md-nav__link">
+    Part-2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-3" class="md-nav__link">
+    Part-3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-4" class="md-nav__link">
+    Part-4
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chain-rule-for-matrix-product" class="md-nav__link">
+    Chain rule for matrix product
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gradient-for-softmax-layer" class="md-nav__link">
+    Gradient for softmax layer
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="appendix">Appendix<a class="headerlink" href="#appendix" title="Permanent link">&para;</a></h1>
+<h2 id="categorical-cross-entropy">Categorical Cross Entropy<a class="headerlink" href="#categorical-cross-entropy" title="Permanent link">&para;</a></h2>
+<h3 id="part-1">Part-1<a class="headerlink" href="#part-1" title="Permanent link">&para;</a></h3>
+<p>In the case of multi-class classification, the output layer after softmax can be viewed as a conditional probability distribution over the labels given the data-point. This is a categorical distribution over the <span class="arithmatex">\(k\)</span> classes. Let us call it <span class="arithmatex">\(q(y\ |\ x)\)</span>. This is the predicted distribution. There is a true distribution over the labels. Let us call it <span class="arithmatex">\(p(y\ |\ x)\)</span>. Note that both are conditional distributions of the label given the data-point.</p>
+<p>The (conditional) cross-entropy of these two conditional distributions is given as follows:
+$$
+H \Big( p(y\ |\ x), q(y\ |\ x) \Big) = -\sum \limits_{x} p(x) \sum \limits_{y} p(y\ |\ x) \log q(y\ |\ x)
+$$
+Note that this is really the expectation of some function <span class="arithmatex">\(f(x)\)</span> over the marginal distribution <span class="arithmatex">\(p(x)\)</span>: </p>
+<div class="arithmatex">\[
+\begin{aligned}
+E[f(x)] &amp;= \sum \limits_{x} p(x) f(x)\\
+&amp;= E \left[- \sum \limits_{y} p(y\ |\ x) \log q(y\ |\ x) \right]
+\end{aligned}
+\]</div>
+<p>To compute an expectation, we need to sum over all samples drawn from this distribution. In practice, this is not going to be possible. This expectation is typically approximated by sampling data-points from the marginal distribution. We can replace the exhaustive summation with a sum over the <span class="arithmatex">\(n\)</span> data-points in our batch of examples:
+$$
+H \Big( p(y\ |\ x), q(y\ |\ x) \Big) = -\cfrac{1}{n} \sum \limits_{i = 1}^{n} \sum \limits_{y} p(y\ |\ x^{(i)}) \log q(y\ |\ x^{(i)})
+$$
+A crude way of seeing this is as follows: if a particular data-point <span class="arithmatex">\(x^{*}\)</span> is sampled <span class="arithmatex">\(r\)</span> times, (appears <span class="arithmatex">\(r\)</span> times in the batch) then:
+$$
+p(x^{*}) \approx \cfrac{r}{n}
+$$
+Let us get rid of the factor of <span class="arithmatex">\(\frac{1}{n}\)</span> as it doesn't matter from the point of view of optimization.</p>
+<h3 id="part-2">Part-2<a class="headerlink" href="#part-2" title="Permanent link">&para;</a></h3>
+<p>We are left with the following expression for the cross-entropy:
+$$
+H \Big( p(y\ |\ x), q(y\ |\ x) \Big) = -\sum \limits_{i = 1}^{n} \sum \limits_{y} p(y\ |\ x^{(i)}) \log q(y\ |\ x^{(i)})
+$$
+We now need to understand the inner sum over the labels. Some notation needs to be be setup to make things more tractable:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+y^{(i)}&amp;: \text{true label for data-point i, scalar}\\
+\boldsymbol{y^{(i)}}&amp;: \text{true label for data-point i, one-hot vector}\\
+\boldsymbol{\hat{y}^{(i)}}&amp;: \text{predicted probabilities for data-point i, vector}
+\end{aligned}
+\]</div>
+<p>The symbols in bold are are vectors of length <span class="arithmatex">\(k\)</span>, where <span class="arithmatex">\(k\)</span> is the number of classes. With this notation we can get a better idea about the true and predicted distributions, <span class="arithmatex">\(p\)</span> and <span class="arithmatex">\(q\)</span>, respectively:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+p(y = c\ |\ x^{(i)}) &amp;= \boldsymbol{y^{(i)}_{c}}\\
+q(y = c\ |\ x^{(i)}) &amp;= \boldsymbol{\hat{y}^{(i)}_{c}}
+\end{aligned}
+\]</div>
+<p>Note that <span class="arithmatex">\(\boldsymbol{\hat{y}^{(i)}_{c}}\)</span> is the <span class="arithmatex">\(c^{th}\)</span> component of a vector and hence a scalar. Same is the case for <span class="arithmatex">\(\boldsymbol{y^{(i)}_{c}}\)</span>  We are now ready to compute the categorical cross-entropy:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+H \Big( p(y\ |\ x), q(y\ |\ x) \Big) &amp;= -\sum \limits_{i = 1}^{n} \sum \limits_{y} p(y\ |\ x^{(i)}) \log q(y\ |\ x^{(i)})\\
+&amp;= - \sum \limits_{i = 1}^{n} \sum \limits_{c = 1}^{k} p(y = c\ |\ x^{(i)}) \log q(y = c\ |\ x^{(i)})\\
+&amp;= - \sum \limits_{i = 1}^{n} \sum \limits_{c = 1}^{k} \boldsymbol{y^{(i)}_{c}}\ \cdot \log(\boldsymbol{\hat{y}^{(i)}_{c}})
+\end{aligned}
+\]</div>
+<p>This is the final expression for the categorical cross-entropy (CCE) loss. Even though the inner sum is over <span class="arithmatex">\(k\)</span> classes, only one of the values for <span class="arithmatex">\(\boldsymbol{y^{(i)}_{c}}\)</span> is non-zero. In the end, the sum reduces to a very simple scalar expression in principle:</p>
+<div class="arithmatex">\[
+\text{CCE} = \sum \limits_{i = 1}^{n} -\log \boldsymbol{\hat{y}^{(i)}_{y^{(i)}}}
+\]</div>
+<p>I know that this looks hopelessly complicated, thanks to the subscripts and superscripts. But what it is saying is this:</p>
+<p>The categorical cross-entropy for a batch of data-points can be computed as follows:</p>
+<ul>
+<li>For each data-point, get the predicted probability corresponding to the true label.</li>
+<li>Take negative log of that probability.</li>
+<li>Sum this quantity across the entire batch.</li>
+</ul>
+<h3 id="part-3">Part-3<a class="headerlink" href="#part-3" title="Permanent link">&para;</a></h3>
+<p>Intuitively, this loss makes a lot of sense. In fact, we can see why this should qualify as a loss in the first place by asking these questions:</p>
+<ul>
+<li>When is this quantity minimized?</li>
+</ul>
+<p>When the predicted probability for the correct class (true label) is <span class="arithmatex">\(1\)</span> for every data-point in the batch. </p>
+<ul>
+<li>What happens if the predicted probability for the correct class for some data-point is close to <span class="arithmatex">\(0\)</span>? </li>
+</ul>
+<p>In such a case, <span class="arithmatex">\(-\log \boldsymbol{\hat{y}^{(i)}}_{y^{(i)}}\)</span>  will be a huge positive value, something that is undesirable. </p>
+<ul>
+<li>What does minimizing cross-entropy really mean?</li>
+</ul>
+<p>The attempt to minimize the categorical cross-entropy translates to pushing the probability of the correct-class closer and closer to <span class="arithmatex">\(1\)</span> for each data-point. Our hope is that in this process, the model will learn something useful that generalizes to unseen data-points as well.</p>
+<h3 id="part-4">Part-4<a class="headerlink" href="#part-4" title="Permanent link">&para;</a></h3>
+<p>We can see how this reduces to the binary cross-entropy loss in the case of two classes:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+BCE &amp;= - \sum \limits_{i = 1}^{n} \sum \limits_{c = 1}^{2} \boldsymbol{y^{(i)}_{c}}\ \cdot \log(\boldsymbol{\hat{y}^{(i)}_{c}})\\
+&amp;= - \sum \limits_{i = 1}^{n} \left(  y^{(i)} \log (\hat{y}^{(i)}) + (1 - y^{(i)}) \log (1 - \hat{y}^{(i)}) \right)
+\end{aligned}
+\]</div>
+<h2 id="chain-rule-for-matrix-product">Chain rule for matrix product<a class="headerlink" href="#chain-rule-for-matrix-product" title="Permanent link">&para;</a></h2>
+<p>Let <span class="arithmatex">\(P = QR\)</span>, where <span class="arithmatex">\(P, Q\)</span> and <span class="arithmatex">\(R\)</span> are matrices of compatible dimensions. Let <span class="arithmatex">\(\phi\)</span> be some function of <span class="arithmatex">\(P\)</span>. Let us assume that we have access to the gradient of <span class="arithmatex">\(\phi\)</span> with respect to <span class="arithmatex">\(P\)</span>. Call this <span class="arithmatex">\(P^{(g)}\)</span>. Then, we have the following equations:</p>
+<div class="arithmatex">\[
+Q^{(g)} = P^{(g)} R^T\\
+R^{(g)} = Q^T P^{(g)}
+\]</div>
+<p>This is nothing but the chain rule of differentiation in the presence of a matrix product.</p>
+<h2 id="gradient-for-softmax-layer">Gradient for softmax layer<a class="headerlink" href="#gradient-for-softmax-layer" title="Permanent link">&para;</a></h2>
+<p>In order to derive the gradient matrix at the final layer, it is easier to consider the simpler case of the gradient vector. Let <span class="arithmatex">\(\boldsymbol{z}\)</span> be the pre-activation vector at layer <span class="arithmatex">\(L\)</span> of the network. After applying softmax function <span class="arithmatex">\(g\)</span> on the pre-activation vector, we get <span class="arithmatex">\(\boldsymbol{a}\)</span>, the activation vector. The two vectors are related by the following equations:</p>
+<div class="arithmatex">\[
+\boldsymbol{a} = g(\boldsymbol{z}) = \begin{bmatrix}
+\cdots &amp; \cfrac{e^{z_j}}{\sum \limits_{r = 1}^{k} e^{z_r}} &amp; \cdots \end{bmatrix}
+\]</div>
+<p>The gradient of the loss with respect to the activation vector is given by:</p>
+<div class="arithmatex">\[
+\boldsymbol{a^{(g)}} = \nabla_{\boldsymbol{a}} L
+\]</div>
+<p>The tricky part is the gradient of the loss with respect to the pre-activations. Let us consider a single element in the pre-activation vector, <span class="arithmatex">\(z_j\)</span>. We are interested in the partial derivative <span class="arithmatex">\(\cfrac{\partial L}{\partial z_j}\)</span>. What this means is this:  how much does the loss change when a small change is made to <span class="arithmatex">\(z_j\)</span>. It is not exactly this, but the ratio of these two quantities, but you get the idea.</p>
+<p><span class="arithmatex">\(z_j\)</span> isn't directly connected to the loss function. The elements of the activation vector <span class="arithmatex">\(a_i\)</span>s intervene. In other words, the impact of <span class="arithmatex">\(z_j\)</span> on the loss is mediated by the <span class="arithmatex">\(a_i\)</span>s. Changing <span class="arithmatex">\(z_j\)</span> has an impact on each of the <span class="arithmatex">\(a_i\)</span>s because of the way softmax is defined. We already know how the loss is affected when the <span class="arithmatex">\(a_j\)</span>s are disturbed. This is captured by <span class="arithmatex">\(\boldsymbol{a^{(g)}}\)</span>. So much for the chain rule. We are now ready to state it:</p>
+<div class="arithmatex">\[
+\cfrac{\partial L}{\partial z_j} = \sum \limits_{i = 1}^{k} \cfrac{\partial L}{\partial a_i} \cfrac{\partial a_i}{\partial z_j}
+\]</div>
+<p>The second term in the product is the <span class="arithmatex">\(ij^{th}\)</span> element of the Jacobian matrix <span class="arithmatex">\(J_{\boldsymbol{z}}(\boldsymbol{a})\)</span>:</p>
+<div class="arithmatex">\[
+J_{\boldsymbol{z}}(\boldsymbol{a}) \Bigg|_{ij} = \left [ \cfrac{\partial a_i}{\partial z_j} \right]
+\]</div>
+<p>The Jacobian matrix is a matrix of partial derivatives of the components of the vector <span class="arithmatex">\(\boldsymbol{a}\)</span> with respect to <span class="arithmatex">\(\boldsymbol{z}\)</span>. With the introduction of the Jacobian matrix, we can now state the gradient of the loss with respect to the pre-activations in the following succinct manner:</p>
+<div class="arithmatex">\[
+\boldsymbol{z^{(g)}} = \nabla_{\boldsymbol{z}} L = J_{\boldsymbol{z}}(\boldsymbol{a})^T\boldsymbol{a^{(g)}}
+\]</div>
+<p>We can now turn our attention to computing the Jacobian:</p>
+<div class="arithmatex">\[
+J_{\boldsymbol{z}}(\boldsymbol{a}) \Bigg|_{ij} = \begin{cases}
+-a_i a_j &amp;\quad i \neq j\\
+a_j - a_j^2 &amp;\quad i = j
+\end{cases}
+\]</div>
+<p>This form of expressing the Jacobian element-wise is unwieldy for computation. Fortunately, this has a simple matrix-representation:</p>
+<div class="arithmatex">\[
+J_{\boldsymbol{z}}(\boldsymbol{a}) = \text{diag}(\boldsymbol{a}) - \boldsymbol{a} \boldsymbol{a}^T
+\]</div>
+<p>Here, <span class="arithmatex">\(\text{diag}({\boldsymbol{a}})\)</span> is a diagonal matrix with the elements of the activation vector making up the diagonal. The second term on the RHS is called the outer-product. We can now plug the Jacobian into the earlier equation:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\boldsymbol{z^{(g)}} &amp;= J_{\boldsymbol{z}}(\boldsymbol{a})^T\boldsymbol{a^{(g)}}\\
+&amp;= \Big[ \text{diag}(\boldsymbol{a}) - \boldsymbol{a} \boldsymbol{a}^T \Big] \boldsymbol{a^{(g)}}\\
+&amp;= \left( \boldsymbol{a} \odot \boldsymbol{a^{(g)}} \right) - \left( \boldsymbol{a}^T \boldsymbol{a^{(g)}}\boldsymbol{a}\right)\\
+&amp;= \left(\boldsymbol{a} \odot \boldsymbol{a^{(g)}} \right) - \left( \boldsymbol{a} \odot \boldsymbol{a^{(g)}} \boldsymbol{1}_k \boldsymbol{a}\right)\\
+\end{aligned}
+\]</div>
+<p>That might seem terribly complicated. Step-2 of the equation is just substituting the Jacobian. To understand step-3, try to think about the product of a diagonal matrix and a vector, and see how that transforms to element-wise product between two vectors. The final-step is another trick where we convert the dot product between two vectors into an element-wise product followed by multiplication by a vector of ones.</p>
+<p>Why are all these transformations necessary? The moment we express them as element-wise products, we can almost effortlessly extend this formula to a matrix of activations:</p>
+<div class="arithmatex">\[
+\boldsymbol{Z_L^{(g)}} = \left(\boldsymbol{A_L} \odot \boldsymbol{A_L^{(g)}} \right) - \left( \boldsymbol{A_L} \odot \boldsymbol{A_L^{(g)}} \boldsymbol{1}_{k \times k} \right) \odot \boldsymbol{A_L}\\
+\]</div>
+<p>That again looks complicated. But if we stare at it for a while, the RHS is actually remarkably simple:</p>
+<ul>
+<li>The first term is is simply the element-wise multiplication of the activation matrix and its corresponding gradient. Call this some matrix <span class="arithmatex">\(\boldsymbol{B}\)</span>.</li>
+<li>The second term is just the row-wise sum of <span class="arithmatex">\(\boldsymbol{B}\)</span> followed by an element-wise multiplication with the activation-matrix.</li>
+</ul>
+<p>These expressions are powerful because we can directly translate them into <code>NumPy</code>. For example, the <code>NumPy</code> equivalent of this equation would be:</p>
+<pre><code class="language-python">B = A_L * A_L_g
+Z_l_g = B - np.sum(B, axis = 1) * A_l
+</code></pre>
+<p>The good news is that the expression for <span class="arithmatex">\(\boldsymbol{Z_L^{(g)}}\)</span> In the case of softmax with categorical cross-entropy loss can be further simplified. Recall the following results:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\boldsymbol{A_L} &amp;= \boldsymbol{\hat{Y}}\\
+\boldsymbol{A_L^{(g)}} &amp;= - \boldsymbol{Y} \odot \boldsymbol{\hat{Y}}^{\odot -1} 
+\end{aligned}
+\]</div>
+<p>The element-wise product of these two matrices is simply the matrix <span class="arithmatex">\(-\boldsymbol{Y}\)</span>! With that, the expression for <span class="arithmatex">\(\boldsymbol{Z_L^{(g)}}\)</span> becomes:</p>
+<div class="arithmatex">\[
+\boldsymbol{Z_L^{(g)}} = \boldsymbol{\hat{Y}} - \boldsymbol{Y}
+\]</div>
+<p>All this computation seems justified given the elementary nature of the result.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../learning-algo/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Learning Algorithm" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Learning Algorithm
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ed9748b7.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -2,4 +2,4 @@
 
 A collection of notes for the MLT course.
 
-https://bsc-iitm.github.io/machine-learning-techniques/
+https://bsc-iitm.github.io/machine-learning-techniques/site
