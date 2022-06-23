@@ -1,0 +1,947 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Karthik Thiagarajan">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.13">
+    
+    
+      
+        <title>Support Vector Machines - Machine Learning Techniques</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e411adfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#course-outline" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Machine Learning Techniques" class="md-header__button md-logo" aria-label="Machine Learning Techniques" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Machine Learning Techniques
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Support Vector Machines
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Machine Learning Techniques" class="md-nav__button md-logo" aria-label="Machine Learning Techniques" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Machine Learning Techniques
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Week-3
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week-3" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Week-3
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../week-3/week-3_1/" class="md-nav__link">
+        Polynomial regression
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../week-3/week-3_2/" class="md-nav__link">
+        Generating Polynomial Transformations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../week-3/week-3_3/" class="md-nav__link">
+        Finding degree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../week-3/week-3_4/" class="md-nav__link">
+        Learning curves
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Week-12
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week-12" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Week-12
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../week-12/preliminaries/" class="md-nav__link">
+        Preliminaries
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../week-12/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../week-12/model/" class="md-nav__link">
+        Model
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../week-12/forward/" class="md-nav__link">
+        Forward pass
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../week-12/loss/" class="md-nav__link">
+        Loss
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../week-12/backward/" class="md-nav__link">
+        Backward pass
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../week-12/learning-algo/" class="md-nav__link">
+        Learning Algorithm
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../week-12/appendix/" class="md-nav__link">
+        Appendix
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="course-outline">Course Outline<a class="headerlink" href="#course-outline" title="Permanent link">&para;</a></h1>
+<ul>
+<li>
+<p>Linear regression</p>
+</li>
+<li>
+<p>Least square classification</p>
+</li>
+<li>Perceptron</li>
+<li>Logistic regression</li>
+<li>Naive Bayes</li>
+<li>Softmax regression</li>
+<li><strong>Support Vector Machines (SVM)</strong></li>
+<li>Decision trees</li>
+<li>Ensemble techniques</li>
+<li>K-means clustering</li>
+<li>Artificial Neural Networks</li>
+</ul>
+<h1 id="lecture-outline">Lecture Outline<a class="headerlink" href="#lecture-outline" title="Permanent link">&para;</a></h1>
+<p>::: incremental</p>
+<ul>
+<li>Motivation</li>
+<li>Geometry</li>
+<li><strong>Hard-margin SVM</strong></li>
+<li><strong>Formulation</strong></li>
+<li>Optimization (recap)</li>
+<li>Optimization</li>
+<li>Soft-margin SVM</li>
+<li>Approximate solution</li>
+</ul>
+<p>:::</p>
+<h1 id="pointo-phobic">Pointo-phobic…<a class="headerlink" href="#pointo-phobic" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=center}</p>
+<p>::: {.column width="100%"}</p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p>Stay away from data-points of either class</p>
+<p>:::</p>
+<p>::: {.column width="0%"}</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="margin">Margin<a class="headerlink" href="#margin" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=center}</p>
+<p>::: {.column width="100%"}</p>
+<p><img alt="" src="../images/016.svg" width="800" /></p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="margin_1">Margin<a class="headerlink" href="#margin_1" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=center}</p>
+<p>::: {.column width="100%"}</p>
+<p><img alt="" src="../images/017.svg" width="800" /></p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="margin_2">Margin<a class="headerlink" href="#margin_2" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=center}</p>
+<p>::: {.column width="100%"}</p>
+<p><img alt="" src="../images/018.svg" width="800" /></p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="margin_3">Margin<a class="headerlink" href="#margin_3" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="50%"}</p>
+<p><img alt="" src="../images/018.svg" width="800" /></p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br></p>
+<p><u>Margin</u></p>
+<p>Distance of the closest point from the decision boundary</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="margin_4">Margin<a class="headerlink" href="#margin_4" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="50%"}</p>
+<p><img alt="" src="../images/019.svg" width="800" /></p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br></p>
+<p><u>Margin</u></p>
+<p>Distance of the closest point from the decision boundary</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="margin_5">Margin<a class="headerlink" href="#margin_5" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="50%"}</p>
+<p><img alt="" src="../images/019.svg" width="800" /></p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br></p>
+<p><u>Margin</u></p>
+<p>Distance of the closest point from the decision boundary</p>
+<p><br></p>
+<p>As the decision boundary changes, the margin also changes. </p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="max-margin">Max-Margin<a class="headerlink" href="#max-margin" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="50%"}</p>
+<p><img alt="" src="../images/019.svg" width="800" /></p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br></p>
+<p>The best classifier is the one with maximum margin.</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="hard-margin-svm">Hard-margin SVM<a class="headerlink" href="#hard-margin-svm" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="100%"}</p>
+<p><br></p>
+<p><br></p>
+<p>::: incremental</p>
+<ul>
+<li><strong>Assumption</strong> — Data-points are linearly separable</li>
+<li><strong>Hard</strong> decisions: all points of a class <em>strictly</em> belong to one side of the boundary</li>
+<li>Find the boundary that has the maximum <strong>margin</strong></li>
+<li>We can formulate this as an optimization problem</li>
+</ul>
+<p>:::</p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="100%"}</p>
+<p><br></p>
+<p><br></p>
+<p>::: incremental</p>
+<ul>
+<li>Binary classification problem</li>
+<li><span class="arithmatex">\(n\)</span> data-points, <span class="arithmatex">\(m\)</span> features</li>
+<li><span class="arithmatex">\(x_i \in \mathbb{R}^m\)</span>, feature vector of the <span class="arithmatex">\(i^{th}\)</span> point</li>
+<li><span class="arithmatex">\(y_i \in \{-1, 1\}\)</span>, label of the <span class="arithmatex">\(i^{th}\)</span> point</li>
+<li><span class="arithmatex">\(D = \big \{(x_i, y_i) \big\}_{i = 1}^{n}\)</span></li>
+</ul>
+<p>:::</p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation">Formulation<a class="headerlink" href="#formulation" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="40%"}</p>
+<p><br></p>
+<p><br></p>
+<p>Distance of the <span class="arithmatex">\(i^{th}\)</span> data-point from the decision boundary</p>
+<p>:::</p>
+<p>::: {.column width="60%"}</p>
+<p><br></p>
+<p><br></p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_1">Formulation<a class="headerlink" href="#formulation_1" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="40%"}</p>
+<p><br></p>
+<p><br></p>
+<p>Distance of the <span class="arithmatex">\(i^{th}\)</span> data-point from the decision boundary</p>
+<p>:::</p>
+<p>::: {.column width="60%"}</p>
+<p><br></p>
+<p><br>
+$$
+d_i = \left| \cfrac{w^Tx_i + b}{||w||} \right|
+$$
+:::</p>
+<p>:::</p>
+<h1 id="formulation_2">Formulation<a class="headerlink" href="#formulation_2" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="40%"}</p>
+<p><img alt="" src="../images/020.svg" width="800" /></p>
+<p>:::</p>
+<p>::: {.column width="60%"}</p>
+<p><br></p>
+<p><br>
+$$
+d_i = \left| \cfrac{w^Tx_i + b}{||w||} \right|
+$$
+:::</p>
+<p>:::</p>
+<h1 id="formulation_3">Formulation<a class="headerlink" href="#formulation_3" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="40%"}</p>
+<p><img alt="" src="../images/020.svg" width="800" /></p>
+<p>:::</p>
+<p>::: {.column width="60%"}</p>
+<p><br></p>
+<p><br>
+$$
+d_i = \cfrac{y_i(w^Tx_i + b)}{||w||}
+$$
+:::</p>
+<p>:::</p>
+<h1 id="formulation_4">Formulation<a class="headerlink" href="#formulation_4" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br></p>
+<p><strong>Margin</strong>: <span class="arithmatex">\(d\)</span></p>
+<p>Distance of the closest point from the boundary</p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br></p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_5">Formulation<a class="headerlink" href="#formulation_5" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br></p>
+<p><strong>Margin</strong>: <span class="arithmatex">\(d\)</span></p>
+<p>Distance of the closest point from the boundary</p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br>
+$$
+d = \min \limits_{i} \quad d_i
+$$</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_6">Formulation<a class="headerlink" href="#formulation_6" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br></p>
+<p><strong>Margin</strong>: <span class="arithmatex">\(d\)</span></p>
+<p>Distance of the closest point from the boundary</p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br>
+$$
+d = \min \limits_{i} \quad  \cfrac{y_i(w^Tx_i + b)}{||w||}
+$$</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_7">Formulation<a class="headerlink" href="#formulation_7" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br></p>
+<p><span class="arithmatex">\(x_j\)</span> is closest to the boundary</p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br>
+$$
+d = \cfrac{y_j(w^Tx_j + b)}{||w||}
+$$</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_8">Formulation<a class="headerlink" href="#formulation_8" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br></p>
+<ul>
+<li>Recall: <span class="arithmatex">\((kw, kb)\)</span> and <span class="arithmatex">\((w, b)\)</span> are the same decision boundary for <span class="arithmatex">\(k \neq 0\)</span></li>
+</ul>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br>
+$$
+d = \cfrac{y_j(w^Tx_j + b)}{||w||}
+$$</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_9">Formulation<a class="headerlink" href="#formulation_9" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br></p>
+<ul>
+<li>Recall: <span class="arithmatex">\((kw, kb)\)</span> and <span class="arithmatex">\((w, b)\)</span> are the same decision boundary for <span class="arithmatex">\(k \neq 0\)</span></li>
+<li>Choose <span class="arithmatex">\((w, b)\)</span> s.t</li>
+</ul>
+<div class="arithmatex">\[
+y_j(w^T x_j + b) = 1
+\]</div>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br>
+$$
+d = \cfrac{y_j(w^Tx_j + b)}{||w||}
+$$</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_10">Formulation<a class="headerlink" href="#formulation_10" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br></p>
+<ul>
+<li>Recall: <span class="arithmatex">\((kw, kb)\)</span> and <span class="arithmatex">\((w, b)\)</span> are the same decision boundary for <span class="arithmatex">\(k \neq 0\)</span></li>
+<li>Choose <span class="arithmatex">\((w, b)\)</span> s.t</li>
+</ul>
+<div class="arithmatex">\[
+y_j(w^T x_j + b) = 1
+\]</div>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p><br></p>
+<p><br>
+$$
+d = \cfrac{1}{||w||}
+$$</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_11">Formulation<a class="headerlink" href="#formulation_11" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=center}</p>
+<p>::: {.column width="100%"}</p>
+<p><br></p>
+<p><br></p>
+<p>Margin of the boundary <span class="arithmatex">\((w, b)\)</span> for <span class="arithmatex">\(D = \big \{(x_i, y_i) \big\}_{i = 1}^{n}\)</span> is given by:</p>
+<p><br>
+$$
+d = \cfrac{1}{||w||}
+$$
+<br></p>
+<p>Where, <span class="arithmatex">\(x_j\)</span> is the closest point to it with <span class="arithmatex">\(y_j(w^T x_j + b) = 1\)</span></p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_12">Formulation<a class="headerlink" href="#formulation_12" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=center}</p>
+<p>::: {.column width="100%"}</p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p>If <span class="arithmatex">\(x_j\)</span> is the closest point with <span class="arithmatex">\(y_j(w^T x_j + b) = 1\)</span>, then what can we say about the other points in the dataset?</p>
+<p><br></p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_13">Formulation<a class="headerlink" href="#formulation_13" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=center}</p>
+<p>::: {.column width="100%"}</p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p>If <span class="arithmatex">\(x_j\)</span> is the closest point with <span class="arithmatex">\(y_j(w^T x_j + b) = 1\)</span>, then:</p>
+<p><br>
+$$
+y_i(w^T x_i + b) \geq 1, \quad 1 \leq i \leq n
+$$</p>
+<p>:::</p>
+<p>::: {.column width="50%"}</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_14">Formulation<a class="headerlink" href="#formulation_14" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=center}</p>
+<p>::: {.column width="100%"}</p>
+<p><br></p>
+<p><br>
+$$
+\max \limits_{w, b} \quad \cfrac{1}{||w||}
+$$</p>
+<p><br></p>
+<p>:::</p>
+<p>::: {.column width="0%"}</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_15">Formulation<a class="headerlink" href="#formulation_15" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=center}</p>
+<p>::: {.column width="100%"}</p>
+<p><br></p>
+<p><br>
+$$
+\max \limits_{w, b} \quad \cfrac{1}{||w||}
+$$
+<br></p>
+<p>subject to:</p>
+<p><br></p>
+<p>:::</p>
+<p>::: {.column width="0%"}</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_16">Formulation<a class="headerlink" href="#formulation_16" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=center}</p>
+<p>::: {.column width="100%"}</p>
+<p><br></p>
+<p><br>
+$$
+\max \limits_{w, b} \quad \cfrac{1}{||w||}
+$$
+<br></p>
+<p>subject to:</p>
+<p><br>
+$$
+y_i(w^T x_i + b) \geq 1, \quad 1 \leq i \leq n
+$$
+:::</p>
+<p>::: {.column width="0%"}</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_17">Formulation<a class="headerlink" href="#formulation_17" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=center}</p>
+<p>::: {.column width="100%"}</p>
+<p><br></p>
+<p><br>
+$$
+\min \limits_{w, b} \quad \cfrac{||w||^2}{2}
+$$
+<br></p>
+<p>subject to:</p>
+<p><br>
+$$
+y_i(w^T x_i + b) \geq 1, \quad 1 \leq i \leq n
+$$
+:::</p>
+<p>::: {.column width="0%"}</p>
+<p>:::</p>
+<p>:::</p>
+<h1 id="formulation_18">Formulation<a class="headerlink" href="#formulation_18" title="Permanent link">&para;</a></h1>
+<p>::: {.columns align=left}</p>
+<p>::: {.column width="40%"}</p>
+<p><br></p>
+<p><br>
+$$
+\min \limits_{w, b} \quad \cfrac{||w||^2}{2}
+$$
+<br></p>
+<p>subject to:</p>
+<p><br>
+$$
+y_i(w^T x_i + b) \geq 1, \quad 1 \leq i \leq n
+$$
+:::</p>
+<p>::: {.column width="60%"}</p>
+<p><img alt="" src="../images/021.svg" width="800" /></p>
+<p>:::</p>
+<p>:::</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ed9748b7.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

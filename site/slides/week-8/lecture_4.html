@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <script type="text/javascript" src="https://livejs.com/live.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Karthik Thiagarajan" />
+  <title>Support Vector Machines</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Support Vector Machines</h1>
+  <p class="subtitle">Machine Learning Techniques</p>
+  <p class="author">
+Karthik Thiagarajan
+  </p>
+</div>
+<div id="course-outline" class="slide section level1">
+<h1>Course Outline</h1>
+<ul>
+<li><p>Linear regression</p></li>
+<li><p>Least square classification</p></li>
+<li><p>Perceptron</p></li>
+<li><p>Logistic regression</p></li>
+<li><p>Naive Bayes</p></li>
+<li><p>Softmax regression</p></li>
+<li><p><strong>Support Vector Machines (SVM)</strong></p></li>
+<li><p>Decision trees</p></li>
+<li><p>Ensemble techniques</p></li>
+<li><p>K-means clustering</p></li>
+<li><p>Artificial Neural Networks</p></li>
+</ul>
+</div>
+<div id="lecture-outline" class="slide section level1">
+<h1>Lecture Outline</h1>
+<div>
+<ul class="incremental">
+<li>Motivation</li>
+<li>Geometry</li>
+<li><strong>Hard-margin SVM</strong>
+<ul class="incremental">
+<li>Formulation</li>
+<li><strong>Optimization (recap)</strong></li>
+<li>Optimization</li>
+</ul></li>
+<li>Soft-margin SVM</li>
+<li>Approximate solution</li>
+</ul>
+</div>
+</div>
+<div id="constrained-optimization" class="slide section level1">
+<h1>Constrained Optimization</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/001.png" width="500" /></p>
+</div><div class="column" style="width:50%;">
+<p><span class="math display">\[
+\min \limits_{x} \quad x_1^2 + x_2^2
+\]</span> <br></p>
+<p>subject to</p>
+<p><br> <span class="math display">\[
+(x_1 - 5)^2 + (x_2 - 7)^2 \leq 5
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="general-form" class="slide section level1">
+<h1>General Form</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/001.png" width="500" /></p>
+</div><div class="column" style="width:50%;">
+<p><span class="math display">\[
+\min \limits_{x} \quad f(x)
+\]</span> <br></p>
+<p>subject to</p>
+<p><br> <span class="math display">\[
+g(x) \leq 0
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="active-constraint" class="slide section level1">
+<h1>Active constraint</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/001.png" width="500" /></p>
+</div><div class="column" style="width:50%;">
+<p><img src="images/024.svg" width="700" /></p>
+</div>
+</div>
+</div>
+<div id="active-constraint-1" class="slide section level1">
+<h1>Active constraint</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/001.png" width="500" /></p>
+</div><div class="column" style="width:50%;">
+<p><img src="images/025.svg" width="700" /></p>
+</div>
+</div>
+</div>
+<div id="active-constraint-2" class="slide section level1">
+<h1>Active constraint</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/001.png" width="500" /></p>
+</div><div class="column" style="width:50%;">
+<p><img src="images/026.svg" width="700" /></p>
+</div>
+</div>
+</div>
+<div id="active-constraint-3" class="slide section level1">
+<h1>Active constraint</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/001.png" width="500" /></p>
+</div><div class="column" style="width:50%;">
+<p><img src="images/027.svg" width="700" /></p>
+</div>
+</div>
+</div>
+<div id="active-constraint-4" class="slide section level1">
+<h1>Active constraint</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/029.svg" width="800" /></p>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+</div>
+<div id="active-constraint-5" class="slide section level1">
+<h1>Active constraint</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/030.svg" width="800" /></p>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+</div>
+<div id="active-constraint-6" class="slide section level1">
+<h1>Active constraint</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/031.svg" width="800" /></p>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+</div>
+<div id="active-constraint-7" class="slide section level1">
+<h1>Active constraint</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/031.svg" width="800" /></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\nabla f(x) = -\lambda \nabla g(x), \quad \lambda &gt; 0
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="active-constraint-8" class="slide section level1">
+<h1>Active constraint</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/031.svg" width="800" /></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\nabla f(x) + \lambda \nabla g(x) = 0, \quad \lambda &gt; 0
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="active-constraint-9" class="slide section level1">
+<h1>Active constraint</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/031.svg" width="800" /></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\nabla \left( f(x) + \lambda g(x) \right) = 0, \quad \lambda &gt; 0
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="active-constraint-10" class="slide section level1">
+<h1>Active constraint</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><img src="images/031.svg" width="650" /></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<div>
+<p><span class="math display">\[
+\nabla L(x, \lambda) = 0
+\]</span></p>
+<ul class="incremental">
+<li><p><span class="math inline">\(L(x, \lambda) = f(x) + \lambda g(x)\)</span></p></li>
+<li><p><span class="math inline">\(\lambda &gt; 0\)</span></p></li>
+<li><p><span class="math inline">\(g(x) = 0\)</span></p></li>
+<li><p>Active constraint</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="inactive-constraint" class="slide section level1">
+<h1>Inactive constraint</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/002.png" width="500" /></p>
+</div><div class="column" style="width:50%;">
+<p><img src="images/033.svg" width="700" /></p>
+</div>
+</div>
+</div>
+<div id="inactive-constraint-1" class="slide section level1">
+<h1>Inactive constraint</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/033.svg" width="700" /></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\nabla f(x) = 0
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="inactive-constraint-2" class="slide section level1">
+<h1>Inactive constraint</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><img src="images/033.svg" width="700" /></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<div>
+<p><span class="math display">\[
+\nabla L(x, \lambda) = 0
+\]</span></p>
+<ul class="incremental">
+<li><p><span class="math inline">\(L(x, \lambda) = f(x) + \lambda g(x)\)</span></p></li>
+<li><p><span class="math inline">\(\lambda = 0\)</span></p></li>
+<li><p><span class="math inline">\(g(x) &lt; 0\)</span></p></li>
+<li><p>Inactive constraint</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="towards-kkt" class="slide section level1">
+<h1>Towards KKT</h1>
+<p><span class="math display">\[
+L(x, \lambda) = f(x) + \lambda g(x)
+\]</span></p>
+<p><span class="math display">\[
+\nabla L(x, \lambda) = 0
+\]</span></p>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<ul>
+<li><p><span class="math inline">\(\lambda &gt; 0\)</span></p></li>
+<li><p><span class="math inline">\(g(x) = 0\)</span></p></li>
+<li><p>Active constraint</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<ul>
+<li><p><span class="math inline">\(\lambda = 0\)</span></p></li>
+<li><p><span class="math inline">\(g(x) &lt; 0\)</span></p></li>
+<li><p>Inactive constraint</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="towards-kkt-1" class="slide section level1">
+<h1>Towards KKT</h1>
+<p><span class="math display">\[
+L(x, \lambda) = f(x) + \lambda g(x)
+\]</span></p>
+<p><span class="math display">\[
+\nabla L(x, \lambda) = 0
+\]</span></p>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<ul>
+<li><p><span class="math inline">\(\lambda &gt; 0\)</span></p></li>
+<li><p><span class="math inline">\(g(x) = 0\)</span></p></li>
+<li><p>Active constraint</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<ul>
+<li><p><span class="math inline">\(\lambda = 0\)</span></p></li>
+<li><p><span class="math inline">\(g(x) &lt; 0\)</span></p></li>
+<li><p>Inactive constraint</p></li>
+</ul>
+</div><p><span class="math display">\[
+\lambda g(x) = 0
+\]</span></p>
+</div>
+</div>
+<div id="kkt" class="slide section level1">
+<h1>KKT</h1>
+<p><strong>Lagrangian</strong> <span class="math display">\[
+L(x, \lambda) = f(x) + \lambda g(x)
+\]</span> <strong>Condition-1</strong> <span class="math display">\[
+\nabla L(x, \lambda) = 0
+\]</span> <strong>Condition-2</strong> <span class="math display">\[
+g(x) \leq 0
+\]</span> <strong>Condition-3</strong> <span class="math display">\[
+\lambda \geq 0
+\]</span> <strong>Condition-4</strong> <span class="math display">\[
+\lambda g(x) = 0
+\]</span></p>
+</div>
+<div id="kkt---template" class="slide section level1">
+<h1>KKT - Template</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br> <span class="math display">\[
+\min \limits_{x} \quad f(x)
+\]</span> <br></p>
+<p>subject to</p>
+<p><br> <span class="math display">\[
+g(x) \leq 0
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><strong>Lagrangian</strong> <span class="math display">\[
+L(x, \lambda) = f(x) + \lambda g(x)
+\]</span> <strong>Condition-1</strong> <span class="math display">\[
+\nabla L(x, \lambda) = 0
+\]</span> <strong>Condition-2</strong> <span class="math display">\[
+g(x) \leq 0
+\]</span> <strong>Condition-3</strong> <span class="math display">\[
+\lambda \geq 0
+\]</span> <strong>Condition-4</strong> <span class="math display">\[
+\lambda g(x) = 0
+\]</span></p>
+</div>
+</div>
+</div>
+</body>
+</html>

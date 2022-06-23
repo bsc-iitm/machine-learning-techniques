@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <script type="text/javascript" src="https://livejs.com/live.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Karthik Thiagarajan" />
+  <title>Support Vector Machines</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Support Vector Machines</h1>
+  <p class="subtitle">Machine Learning Techniques</p>
+  <p class="author">
+Karthik Thiagarajan
+  </p>
+</div>
+<div id="course-outline" class="slide section level1">
+<h1>Course Outline</h1>
+<ul>
+<li><p>Linear regression</p></li>
+<li><p>Least square classification</p></li>
+<li><p>Perceptron</p></li>
+<li><p>Logistic regression</p></li>
+<li><p>Naive Bayes</p></li>
+<li><p>Softmax regression</p></li>
+<li><p><strong>Support Vector Machines (SVM)</strong></p></li>
+<li><p>Decision trees</p></li>
+<li><p>Ensemble techniques</p></li>
+<li><p>K-means clustering</p></li>
+<li><p>Artificial Neural Networks</p></li>
+</ul>
+</div>
+<div id="lecture-outline" class="slide section level1">
+<h1>Lecture Outline</h1>
+<div>
+<ul class="incremental">
+<li>Motivation</li>
+<li>Geometry</li>
+<li>Hard-margin SVM
+<ul class="incremental">
+<li>Formulation</li>
+<li>Optimization (recap)</li>
+<li>Optimization</li>
+</ul></li>
+<li>Soft-margin SVM</li>
+<li><strong>Approximate solution</strong></li>
+</ul>
+</div>
+</div>
+<div id="formulation" class="slide section level1">
+<h1>Formulation</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br> <span class="math display">\[
+\min \limits_{w, b} \quad\cfrac{||w||^2}{2} + C \sum \limits_{i = 1}^{n} \xi_i
+\]</span> <br></p>
+<p>subject to</p>
+<p><br> <span class="math display">\[
+\xi_i \geq 0,\quad 1 \leq i \leq n
+\]</span> <br> <span class="math display">\[
+y_i(w^T x_i + b) \geq 1 - \xi_i, \quad 1 \leq i \leq n
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\xi_i = \begin{cases}
+0,\ &amp; x_i \text{ outside margin}\\
+1 - y_i(w^T x_i + b), \ &amp; x_i \text{ inside margin}\\
+\end{cases}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="formulation-1" class="slide section level1">
+<h1>Formulation</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br> <span class="math display">\[
+\min \limits_{w, b} \quad\cfrac{||w||^2}{2} + C \sum \limits_{i = 1}^{n} \xi_i
+\]</span> <br></p>
+<p>subject to</p>
+<p><br> <span class="math display">\[
+\xi_i \geq 0,\quad 1 \leq i \leq n
+\]</span> <br> <span class="math display">\[
+y_i(w^T x_i + b) \geq 1 - \xi_i, \quad 1 \leq i \leq n
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\xi_i = \max \bigg(0, 1 - y_i(w^Tx_i + b) \bigg)
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="formulation-2" class="slide section level1">
+<h1>Formulation</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br> <span class="math display">\[
+\min \limits_{w, b} \quad\cfrac{||w||^2}{2} + C \sum \limits_{i = 1}^{n} \xi_i
+\]</span> <br></p>
+<p>subject to</p>
+<p><br> <span class="math display">\[
+\xi_i \geq 0,\quad 1 \leq i \leq n
+\]</span> <br> <span class="math display">\[
+y_i(w^T x_i + b) \geq 1 - \xi_i, \quad 1 \leq i \leq n
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\min \limits_{w, b} \quad\cfrac{||w||^2}{2} + C \sum \limits_{i = 1}^{n} \max \bigg(0, 1 - y_i(w^Tx_i + b) \bigg)
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="formulation-3" class="slide section level1">
+<h1>Formulation</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br> <span class="math display">\[
+\min \limits_{w, b} \quad\cfrac{||w||^2}{2} + C \sum \limits_{i = 1}^{n} \xi_i
+\]</span> <br></p>
+<p>subject to</p>
+<p><br> <span class="math display">\[
+\xi_i \geq 0,\quad 1 \leq i \leq n
+\]</span> <br> <span class="math display">\[
+y_i(w^T x_i + b) \geq 1 - \xi_i, \quad 1 \leq i \leq n
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\min \limits_{w, b} \quad\cfrac{||w||^2}{2} + C \sum \limits_{i = 1}^{n} \max \bigg(0, 1 - y_i(w^Tx_i + b) \bigg)
+\]</span> <br></p>
+<div>
+<ul class="incremental">
+<li>Unconstraind</li>
+<li>Convex objective</li>
+<li>Enter gradient descent</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="loss" class="slide section level1">
+<h1>Loss</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\small{\min \limits_{w, b} \quad\cfrac{||w||^2}{2} + C \sum \limits_{i = 1}^{n} \max \bigg(0, 1 - y_i(w^Tx_i + b) \bigg)}
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<div>
+<ul class="incremental">
+<li><p><span class="math inline">\(\small \sum \limits_{i = 1}^{n} \max \bigg(0, 1 - y_i(w^Tx_i + b) \bigg)\)</span> — loss function</p></li>
+<li><p><span class="math inline">\(C &gt; 0\)</span> is a regularization term</p></li>
+<li><p><span class="math inline">\(C\)</span> controls the amount of slackness (OR) margin violations we can tolerate<br />
+</p></li>
+<li><p>Does this expression remind you of regularized linear regression?</p></li>
+<li><p>What happens when:</p>
+<ul class="incremental">
+<li><span class="math inline">\(C \ll 1\)</span></li>
+<li><span class="math inline">\(C \rightarrow \infty\)</span></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="hinge-loss" class="slide section level1">
+<h1>Hinge Loss</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max \bigg(0, 1 - y_i(w^Tx_i + b) \bigg)
+\]</span></p>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+</div>
+<div id="hinge-loss-1" class="slide section level1">
+<h1>Hinge Loss</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max \bigg(0, 1 - z \bigg)
+\]</span></p>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+</div>
+<div id="hinge-loss-2" class="slide section level1">
+<h1>Hinge Loss</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max \bigg(0, 1 - z \bigg)
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><img src="images/049.png" width="600" /></p>
+</div>
+</div>
+</div>
+<div id="gradients" class="slide section level1">
+<h1>Gradients</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+f(z) = \max \bigg(0, 1 - z \bigg)
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\nabla_z f = \begin{cases}
+0, &amp; z \geq 1\\
+-1, &amp; z &lt; 1
+\end{cases}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="gradients-1" class="slide section level1">
+<h1>Gradients</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+f(w, b) = \max \bigg(0, 1 - y_i(w^T x_i + b) \bigg)
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\nabla_w f = \begin{cases}
+0, &amp; y_i(w^T x_i + b) \geq 1\\
+-y_i x_i, &amp;  y_i(w^T x_i + b) &lt; 1
+\end{cases}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="gradients-2" class="slide section level1">
+<h1>Gradients</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+f(w, b) = \max \bigg(0, 1 - y_i(w^T x_i + b) \bigg)
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\nabla_w f = \begin{cases}
+0, &amp; y_i(w^T x_i + b) \geq 1\\
+-y_i x_i, &amp;  y_i(w^T x_i + b) &lt; 1
+\end{cases}
+\]</span> <br> <span class="math display">\[
+\nabla_b f = \begin{cases}
+0, &amp; y_i(w^T x_i + b) \geq 1\\
+-y_i, &amp;  y_i(w^T x_i + b) &lt; 1
+\end{cases}
+\]</span></p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <script type="text/javascript" src="https://livejs.com/live.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>MLT | Week-6 | Gaussian Naive Bayes</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">MLT | Week-6 | Gaussian Naive Bayes</h1>
+</div>
+<div id="course-outline" class="slide section level1">
+<h1>Course Outline</h1>
+<ul>
+<li><p>Linear regression</p></li>
+<li><p>Least square classification</p></li>
+<li><p>Perceptron</p></li>
+<li><p>Logistic regression</p></li>
+<li><p><strong>Naive Bayes</strong></p></li>
+<li><p>Softmax regression</p></li>
+<li><p>K-NN</p></li>
+<li><p>Support Vector Machines (SVM)</p></li>
+<li><p>Decision trees</p></li>
+<li><p>Ensemble techniques</p></li>
+<li><p>K-means clustering</p></li>
+<li><p>Artificial Neural Networks</p></li>
+</ul>
+</div>
+<div id="multivariate-normal-distribution" class="slide section level1">
+<h1>Multivariate Normal Distribution</h1>
+<div class="columns" align="center">
+<div class="column" style="width:25%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\mathbf{x} \sim \mathcal{N}(\boldsymbol{\mu}, \mathbf{\Sigma})
+\]</span></p>
+</div><div class="column" style="width:75%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="multivariate-normal-distribution-1" class="slide section level1">
+<h1>Multivariate Normal Distribution</h1>
+<div class="columns" align="center">
+<div class="column" style="width:25%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\mathbf{x} \sim \mathcal{N}(\boldsymbol{\mu}, \mathbf{\Sigma})
+\]</span></p>
+</div><div class="column" style="width:75%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\mathbf{x} = \begin{bmatrix}
+x_1\\
+\vdots\\
+x_n
+\end{bmatrix} \quad \quad \boldsymbol{\mu} = \begin{bmatrix}
+\mu_1\\
+\vdots\\
+\mu_n
+\end{bmatrix}
+\]</span> <br> <span class="math display">\[
+\Sigma_{ij} = \mathbf{E}[(x_i - \mu_i)(x_j - \mu_j)] = \text{Cov}[x_i, x_j]
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="multivariate-normal-distribution-2" class="slide section level1">
+<h1>Multivariate Normal Distribution</h1>
+<div class="columns" align="center">
+<div class="column" style="width:25%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\mathbf{x} \sim \mathcal{N}(\boldsymbol{\mu}, \mathbf{\Sigma})
+\]</span></p>
+</div><div class="column" style="width:75%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+f_{\mathbf{x}}(x_1, \cdots, x_n) = \cfrac{\exp \left[ -\cfrac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^T \mathbf{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) \right]}{\sqrt{(2 \pi)^n|\mathbf{\Sigma}|}}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="bivariate-normal-distribution-diagonal-sigma" class="slide section level1">
+<h1>Bivariate Normal Distribution (Diagonal <span class="math inline">\(\Sigma\)</span>)</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\mathbf{x} = \begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix} \quad \quad \boldsymbol{\mu} = \begin{bmatrix}
+\mu_1\\
+\mu_2
+\end{bmatrix}
+\]</span> <br> <span class="math display">\[
+\mathbf{\Sigma} = \begin{bmatrix}
+\sigma_1^2 &amp; 0\\
+0 &amp; \sigma_2^2
+\end{bmatrix}
+\]</span></p>
+</div>
+</div>
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+</div>
+<p>:::</p>
+</div>
+<div id="bivariate-normal-distribution-diagonal-sigma-1" class="slide section level1">
+<h1>Bivariate Normal Distribution (Diagonal <span class="math inline">\(\Sigma\)</span>)</h1>
+<div class="columns" align="center">
+<div class="column" style="width:25%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\mathbf{x} = \begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix} \quad \quad \boldsymbol{\mu} = \begin{bmatrix}
+\mu_1\\
+\mu_2
+\end{bmatrix}
+\]</span> <br> <span class="math display">\[
+\mathbf{\Sigma} = \begin{bmatrix}
+\sigma_1^2 &amp; 0\\
+0 &amp; \sigma_2^2
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:75%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\begin{bmatrix}
+x_1 - \mu_1 &amp; x_2 - \mu_2
+\end{bmatrix} 
+\begin{bmatrix}
+\frac{1}{\sigma_1^2} &amp; 0\\
+0 &amp; \frac{1}{\sigma_2^2}
+\end{bmatrix}
+\begin{bmatrix}
+x_1 - \mu_1\\
+x_2 - \mu_2
+\end{bmatrix}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="bivariate-normal-distribution-diagonal-sigma-2" class="slide section level1">
+<h1>Bivariate Normal Distribution (Diagonal <span class="math inline">\(\Sigma\)</span>)</h1>
+<div class="columns" align="center">
+<div class="column" style="width:25%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\cfrac{\exp \left[ -\cfrac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^T \mathbf{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) \right]}{\sqrt{(2 \pi)^n|\mathbf{\Sigma}|}}
+\]</span></p>
+</div><div class="column" style="width:75%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\left( \cfrac{x_1 - \mu_1}{\sigma_1} \right)^2 + \left( \cfrac{x_2 - \mu_2}{\sigma_2} \right)^2
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="bivariate-normal-distribution-diagonal-sigma-3" class="slide section level1">
+<h1>Bivariate Normal Distribution (Diagonal <span class="math inline">\(\Sigma\)</span>)</h1>
+<div class="columns" align="center">
+<div class="column" style="width:25%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\cfrac{\exp \left[ -\cfrac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^T \mathbf{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) \right]}{\sqrt{(2 \pi)^n|\mathbf{\Sigma}|}}
+\]</span></p>
+</div><div class="column" style="width:75%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\cfrac{\exp  \left[ -\cfrac{1}{2}\left( \cfrac{x_1 - \mu_1}{\sigma_1} \right)^2 -  \cfrac{1}{2}\left( \cfrac{x_2 - \mu_2}{\sigma_2} \right)^2 \right]}{\sqrt{(2 \pi)^2 \sigma_1^2 \sigma_2^2}}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="bivariate-normal-distribution-diagonal-sigma-4" class="slide section level1">
+<h1>Bivariate Normal Distribution (Diagonal <span class="math inline">\(\Sigma\)</span>)</h1>
+<div class="columns" align="center">
+<div class="column" style="width:25%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\cfrac{\exp \left[ -\cfrac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^T \mathbf{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) \right]}{\sqrt{(2 \pi)^n|\mathbf{\Sigma}|}}
+\]</span></p>
+</div><div class="column" style="width:75%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\cfrac{\exp  \left[ -\cfrac{1}{2}\left( \cfrac{x_1 - \mu_1}{\sigma_1} \right)^2\right] \cdot \exp \left[ -\cfrac{1}{2}\left( \cfrac{x_2 - \mu_2}{\sigma_2} \right)^2 \right]}{\sqrt{(2 \pi) \sigma_1^2 } \cdot \sqrt{(2 \pi) \sigma_2^2 }}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="bivariate-normal-distribution-diagonal-sigma-5" class="slide section level1">
+<h1>Bivariate Normal Distribution (Diagonal <span class="math inline">\(\Sigma\)</span>)</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+f_{\mathbf{X}}(x_1, x_2) = f_{x_1}(x_1) \cdot f_{x_2}(x_2)
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="bivariate-normal-distribution-diagonal-sigma-6" class="slide section level1">
+<h1>Bivariate Normal Distribution (Diagonal <span class="math inline">\(\Sigma\)</span>)</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+f_{\mathbf{X}}(x_1, x_2) = f_{x_1}(x_1) \cdot f_{x_2}(x_2)
+\]</span></p>
+<p><br></p>
+<p><span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are independent</p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="gaussian-nb" class="slide section level1">
+<h1>Gaussian NB</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+P(x, y) = P(y) \cdot P(x\ |\ y)
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="gaussian-nb-1" class="slide section level1">
+<h1>Gaussian NB</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+P(x, y) = P(y) \cdot P(x\ |\ y)
+\]</span> <br></p>
+<p><span class="math inline">\(P(x\ |\ y)\)</span> is a multivariate Gaussian with ————— covariance matrix.</p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="gaussian-nb-2" class="slide section level1">
+<h1>Gaussian NB</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+P(x, y) = P(y) \cdot P(x\ |\ y)
+\]</span> <br></p>
+<p><span class="math inline">\(P(x\ |\ y)\)</span> is a multivariate Gaussian with diagonal covariance matrix.</p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max \prod \limits_{i = 1}^{n} P(y^{(i)}) P(x^{(i)}\ |\ y^{(i)})
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle-1" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max \prod \limits_{i = 1}^{n} P(y^{(i)}) \prod \limits_{j = 1}^{m} P(x_{j}^{(i)}\ |\ y^{(i)})
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle-2" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max \sum \limits_{i = 1}^{n} \log P(y^{(i)}) \sum \limits_{j = 1}^{m} \log P(x_{j}^{(i)}\ |\ y^{(i)})
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle-3" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max \sum \limits_{i = 1}^{n} \log P(y^{(i)}) \sum \limits_{j = 1}^{m} -\cfrac{1}{2} \log (2 \pi \sigma_j^2) - \cfrac{1}{2} \left( \cfrac{x_j^{(i)} - \mu_j}{\sigma_j} \right)^2 
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle-4" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:40%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\hat{\mu}_{jc} = \cfrac{\sum \limits_{1 = 1}^{n} x_j^{(i)} \mathcal{1}\{y^{(i)} = c\}}{\sum \limits_{i = 1}^{n} \mathcal{1}\{y^{(i)} = c\}}
+\]</span></p>
+</div><div class="column" style="width:60%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\sigma_{jc}^2 = \cfrac{\sum \limits_{1 = 1}^{n} (x_j^{(i)} - \hat{\mu}_{jc})^2 \mathcal{1}\{y^{(i)} = c\}}{\sum \limits_{i = 1}^{n}  \mathcal{1}\{y^{(i)} = c\}}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="mle-5" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:40%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\boldsymbol{\hat{\mu}_c} = \cfrac{\sum \limits_{i = 1}^{n} \mathbf{x^{(i)}}\mathcal{1}\{y^{(i)} = c\}}{\sum \limits_{i = 1}^{n}\mathcal{1}\{y^{(i)} = c\}}
+\]</span></p>
+</div><div class="column" style="width:60%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\text{diag}(\mathbf{\Sigma_c}) = \cfrac{\sum \limits_{i = 1}^{n} (\mathbf{x^{(i)} - \boldsymbol{\hat{\mu}}_{c}}) \odot (\mathbf{x^{(i)} - \boldsymbol{\hat{\mu}}_{c}}) \mathcal{1}\{y^{(i)} = c\}}{\sum \limits_{i = 1}^{n}\mathcal{1}\{y^{(i)} = c\}}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="numpy" class="slide section level1">
+<h1>NumPy</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="../assets/images/img_19.svg" width="800" /></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="numpy-1" class="slide section level1">
+<h1>NumPy</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="../assets/images/img_20.svg" width="1000" /></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="inference" class="slide section level1">
+<h1>Inference</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\hat{y} = \arg \max_{c} P(y = c\ |\ x)
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="inference-1" class="slide section level1">
+<h1>Inference</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\hat{y} = \arg \max_{c} P(y = c) P(x\ |\ y = c)
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="inference-2" class="slide section level1">
+<h1>Inference</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="../assets/images/img_21.svg" width="1000" /></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+</body>
+</html>

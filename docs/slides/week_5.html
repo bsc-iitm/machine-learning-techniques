@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <script type="text/javascript" src="https://livejs.com/live.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>MLT | Week-5</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">MLT | Week-5</h1>
+</div>
+<div id="course-outline" class="slide section level1">
+<h1>Course Outline</h1>
+<ul>
+<li><p>Linear regression</p></li>
+<li><p>Least square classification</p></li>
+<li><p>Perceptron</p></li>
+<li><p>Logistic regression</p></li>
+<li><p>Naive Bayes</p></li>
+<li><p>Softmax regression</p></li>
+<li><p>Support Vector Machines (SVM)</p></li>
+<li><p>Decision trees</p></li>
+<li><p>Ensemble techniques</p></li>
+<li><p>K-means clustering</p></li>
+<li><p>Artificial Neural Networks</p></li>
+</ul>
+</div>
+<div id="story-so-far" class="slide section level1">
+<h1>Story so far</h1>
+<p><strong>Regression</strong></p>
+<div>
+<ul class="incremental">
+<li>Linear regression</li>
+<li>Polynomial regression</li>
+</ul>
+</div>
+</div>
+<div id="story-so-far-1" class="slide section level1">
+<h1>Story so far</h1>
+<p><strong>Regression</strong></p>
+<ul>
+<li>Linear regression</li>
+<li>Polynomial regression</li>
+</ul>
+<p><br></p>
+<p><strong>Classification</strong></p>
+<div>
+<ul class="incremental">
+<li>Least square classification</li>
+<li>Perceptron</li>
+</ul>
+</div>
+</div>
+<div id="unifying-theme" class="slide section level1">
+<h1>Unifying theme</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+
+</div><p><br></p><p><br></p><p>What is one striking similarity among all the models we have seen so far?</p><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="linearity" class="slide section level1">
+<h1>Linearity</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+
+</div><p><br></p><p><br></p><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="linearity-1" class="slide section level1">
+<h1>Linearity</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+
+</div><p><br></p><p><br> <span class="math display">\[
+\huge{w^T x}
+\]</span></p>
+</div>
+<div class="column" style="width:0%;">
+
+</div>
+</div>
+<div id="linearity-2" class="slide section level1">
+<h1>Linearity</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+
+</div><p><br></p><p><br> <span class="math display">\[
+\huge{w^T x} = w_0 + w_1x_1 + \cdots + w_n x_n
+\]</span></p>
+</div>
+<div class="column" style="width:0%;">
+
+</div>
+</div>
+<div id="linearity-3" class="slide section level1">
+<h1>Linearity</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+w^T x = w_0 + w_1x_1 + \cdots + w_n x_n
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p>What does <span class="math inline">\(w_i\)</span> represent?</p>
+</div>
+</div>
+</div>
+<div id="linearity-4" class="slide section level1">
+<h1>Linearity</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+w^T x = w_0 + w_1x_1 + \cdots + w_n x_n
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p>What does <span class="math inline">\(w_i\)</span> represent?</p>
+<p><br></p>
+<p>The importance of feature <span class="math inline">\(x_i\)</span></p>
+</div>
+</div>
+</div>
+<div id="linearity-5" class="slide section level1">
+<h1>Linearity</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+w^T x
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br><br></p>
+<div>
+<ul class="incremental">
+<li>Linear regression</li>
+<li>Polynomial regression</li>
+<li>Least square classification</li>
+<li>Perceptron</li>
+<li>Logistic Regression?</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="logistic-regression" class="slide section level1">
+<h1>Logistic Regression</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br></p>
+<p><strong>Setting</strong></p>
+<div>
+<ul class="incremental">
+<li>Binary classification</li>
+<li>Discriminative model</li>
+</ul>
+</div>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="task" class="slide section level1">
+<h1>Task</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<div>
+<ul class="incremental">
+<li>Feature matrix: <span class="math inline">\(X\)</span>
+<ul class="incremental">
+<li><span class="math inline">\(m \times n\)</span></li>
+<li><span class="math inline">\(m\)</span> data-points, <span class="math inline">\(n\)</span> features</li>
+</ul></li>
+<li>Label vector: <span class="math inline">\(y\)</span>
+<ul class="incremental">
+<li><span class="math inline">\(m \times 1\)</span></li>
+<li><span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span></li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="task-1" class="slide section level1">
+<h1>Task</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<ul>
+<li>Feature matrix: <span class="math inline">\(X\)</span>
+<ul>
+<li><span class="math inline">\(m \times n\)</span></li>
+<li><span class="math inline">\(m\)</span> data-points, <span class="math inline">\(n\)</span> features</li>
+</ul></li>
+<li>Label vector: <span class="math inline">\(y\)</span>
+<ul>
+<li><span class="math inline">\(m \times 1\)</span></li>
+<li><span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span></li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p>Learn a function <span class="math inline">\(h\)</span> such that given a feature vector <span class="math inline">\(x\)</span>, the predicted label is given as: <span class="math display">\[
+y_{\text{pred}} = h(x)
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="types-of-models" class="slide section level1">
+<h1>Types of models</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+P(y\ |\ x)
+\]</span> <br></p>
+<p>Discriminative</p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+P(x, y)
+\]</span> <br></p>
+<p>Generative</p>
+</div>
+</div>
+</div>
+<div id="logistic-regression-1" class="slide section level1">
+<h1>Logistic Regression</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+P(y = 1\ |\ x) = ?
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="logistic-regression-2" class="slide section level1">
+<h1>Logistic Regression</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+P(y = 1\ |\ x) = \sigma(w^T x)
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="logistic-regression-3" class="slide section level1">
+<h1>Logistic Regression</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+P(y = 1\ |\ x) = \sigma(w^T x)
+\]</span></p>
+<p><br></p>
+<p>What kind of a random variable is <span class="math inline">\(y\)</span>?</p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="sigmoid" class="slide section level1">
+<h1>Sigmoid</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\sigma(z) = \cfrac{1}{1 + e^{-z}}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="sigmoid-1" class="slide section level1">
+<h1>Sigmoid</h1>
+<div class="columns" align="center">
+<div class="column" style="width:20%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\sigma(z) = \cfrac{1}{1 + e^{-z}}
+\]</span></p>
+</div><div class="column" style="width:80%;">
+<p>Here <span class="math inline">\(g = \sigma\)</span>:</p>
+<p><img src="../assets/images/img_8.svg" width="500" /></p>
+</div>
+</div>
+</div>
+<div id="logistic-regression-4" class="slide section level1">
+<h1>Logistic Regression</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+P(y = 1\ |\ x) = \sigma(w^T x)
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+P(y = 0\ |\ x) = ?
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="logistic-regression-5" class="slide section level1">
+<h1>Logistic Regression</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+P(y = 1\ |\ x) = \sigma(w^T x)
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+P(y = 0\ |\ x) = 1 - \sigma(w^T x)
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="mle" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><span class="math display">\[
+\begin{aligned}
+L(w) &amp;= \prod \limits_{i = 1}^{m} P(y = y_i\ |\ x_i)\quad \quad \quad \quad \quad \quad\ \ \ \\\\\
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="mle-1" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><span class="math display">\[
+\begin{aligned}
+L(w) &amp;= \prod \limits_{i = 1}^{m} P(y = y_i\ |\ x_i)\\\\
+&amp;= \prod \limits_{i = 1}^{m} \left[ \sigma(w^Tx_i) \right]^{y_i} \left[ 1 - \sigma(w^Tx_i) \right]^{1 - y_i}
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="mle-2" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><span class="math display">\[
+\begin{aligned}
+L(w) &amp;= \prod \limits_{i = 1}^{m} \left[ \sigma(w^Tx_i) \right]^{y_i} \left[ 1 - \sigma(w^Tx_i) \right]^{1 - y_i}
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="mle-3" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><span class="math display">\[
+\begin{aligned}
+l(w) &amp;= \log (L(w))\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad  \\\\
+&amp;= \log \left (\prod \limits_{i = 1}^{m} \left[ \sigma(w^Tx_i) \right]^{y_i} \left[ 1 - \sigma(w^Tx_i) \right]^{1 - y_i} \right)
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="mle-4" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><span class="math display">\[
+\begin{aligned}
+l(w) &amp;= \log (L(w))\\\\
+&amp;= \log \left (\prod \limits_{i = 1}^{m} \left[ \sigma(w^Tx_i) \right]^{y_i} \left[ 1 - \sigma(w^Tx_i) \right]^{1 - y_i} \right)\\\\
+&amp;= \sum \limits_{i = 1}^{m} y_i \cdot \log (\sigma(w^T x_i)) + (1 - y_i) \log (1 - \sigma(w^Tx_i))
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="mle-5" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\begin{aligned}
+\max\quad  l(w)
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="mle-6" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\begin{aligned}
+\min\quad  -l(w)
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="mle-7" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\begin{aligned}
+\min\quad  -l(w)
+\end{aligned}
+\]</span></p>
+<p><br></p>
+<p>Minimize the negative log-likelihood</p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="mle-8" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\begin{aligned}
+\min\quad - \sum \limits_{i = 1}^{m} y_i \cdot \log (\sigma(w^T x_i)) + (1 - y_i) \log (1 - \sigma(w^Tx_i))
+\end{aligned}
+\]</span></p>
+<p><br></p>
+<p>Note: <span class="math inline">\(-\)</span> sign is for the entire sum</p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="mle-9" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\begin{aligned}
+- \left[ y_i \cdot \log (\sigma(w^T x_i)) + (1 - y_i) \log (1 - \sigma(w^Tx_i))\right]
+\end{aligned}
+\]</span> <br></p>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+</div>
+<div id="mle-10" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\begin{aligned}
+- \left[ y_i \cdot \log (\sigma(w^T x_i)) + (1 - y_i) \log (1 - \sigma(w^Tx_i))\right]
+\end{aligned}
+\]</span> <br></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+-\left [ p \log q + (1 - p) \log (1 - q) \right]
+\]</span></p>
+</div>
+</div>
+</div>
+</body>
+</html>

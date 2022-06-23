@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <script type="text/javascript" src="https://livejs.com/live.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Karthik Thiagarajan" />
+  <title>Support Vector Machines</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Support Vector Machines</h1>
+  <p class="subtitle">Machine Learning Techniques</p>
+  <p class="author">
+Karthik Thiagarajan
+  </p>
+</div>
+<div id="course-outline" class="slide section level1">
+<h1>Course Outline</h1>
+<ul>
+<li><p>Linear regression</p></li>
+<li><p>Least square classification</p></li>
+<li><p>Perceptron</p></li>
+<li><p>Logistic regression</p></li>
+<li><p>Naive Bayes</p></li>
+<li><p>Softmax regression</p></li>
+<li><p><strong>Support Vector Machines (SVM)</strong></p></li>
+<li><p>Decision trees</p></li>
+<li><p>Ensemble techniques</p></li>
+<li><p>K-means clustering</p></li>
+<li><p>Artificial Neural Networks</p></li>
+</ul>
+</div>
+<div id="lecture-outline" class="slide section level1">
+<h1>Lecture Outline</h1>
+<div>
+<ul class="incremental">
+<li>Motivation</li>
+<li>Geometry</li>
+<li>Hard-margin SVM
+<ul class="incremental">
+<li>Formulation</li>
+<li>Optimization (recap)</li>
+<li>Optimization</li>
+</ul></li>
+<li><strong>Soft-margin SVM</strong></li>
+<li>Approximate solution</li>
+</ul>
+</div>
+</div>
+<div id="nearly-linearly-separable" class="slide section level1">
+<h1>Nearly Linearly separable</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/034.svg" width="800" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="nearly-linearly-separable-1" class="slide section level1">
+<h1>Nearly Linearly separable</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/035.svg" width="800" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="errors" class="slide section level1">
+<h1>Errors</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/038.svg" width="800" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="errors-1" class="slide section level1">
+<h1>Errors</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/039.svg" width="800" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="errors-2" class="slide section level1">
+<h1>Errors</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/040.svg" width="800" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="errors-3" class="slide section level1">
+<h1>Errors</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/041.svg" width="800" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="errors-4" class="slide section level1">
+<h1>Errors</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/042.svg" width="800" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="errors-5" class="slide section level1">
+<h1>Errors</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/043.svg" width="800" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="errors-6" class="slide section level1">
+<h1>Errors</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/044.svg" width="800" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="errors-7" class="slide section level1">
+<h1>Errors</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/045.svg" width="800" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="errors-8" class="slide section level1">
+<h1>Errors</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/046.svg" width="800" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="errors-9" class="slide section level1">
+<h1>Errors</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/047.svg" width="800" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="errors-10" class="slide section level1">
+<h1>Errors</h1>
+<div class="columns" align="center">
+<div class="column" style="width:40%;">
+<p><img src="images/048.svg" width="700" /></p>
+</div><div class="column" style="width:60%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\xi_i = \begin{cases}
+0,\ &amp; x_i \text{ outside margin}\\
+1 - y_i(w^T x_i + b), \ &amp; x_i \text{ inside margin}\\
+\end{cases}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="constraints" class="slide section level1">
+<h1>Constraints</h1>
+<div class="columns" align="center">
+<div class="column" style="width:40%;">
+<p><img src="images/048.svg" width="700" /></p>
+</div><div class="column" style="width:60%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\xi_i = \begin{cases}
+0,\ &amp; x_i \text{ outside margin}\\
+1 - y_i(w^T x_i + b), \ &amp; x_i \text{ inside margin}\\
+\end{cases}
+\]</span> <br> <span class="math display">\[
+\xi_i \geq 0
+\]</span> and <span class="math display">\[
+y_i(w^T x_i + b) \geq 1 - \xi_i
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="objective-function" class="slide section level1">
+<h1>Objective function</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\cfrac{||w||^2}{2} + C \sum \limits_{i = 1}^{n} \xi_i
+\]</span></p>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+</div>
+<div id="primal" class="slide section level1">
+<h1>Primal</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br> <span class="math display">\[
+\min \limits_{w, b} \quad\cfrac{||w||^2}{2} + C \sum \limits_{i = 1}^{n} \xi_i
+\]</span> <br></p>
+<p>subject to</p>
+<p><br> <span class="math display">\[
+\xi_i \geq 0,\quad 1 \leq i \leq n
+\]</span> <br> <span class="math display">\[
+y_i(w^T x_i + b) \geq 1 - \xi_i, \quad 1 \leq i \leq n
+\]</span></p>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+</div>
+<div id="dual" class="slide section level1">
+<h1>Dual</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br> <span class="math display">\[
+\max \limits_{\lambda}\quad  \sum \limits_{i = 1}^{n} \lambda_i - \cfrac{1}{2} \sum \limits_{i = 1}^{n} \sum \limits_{j = 1}^{n} (y_i y_j x_i^Tx_j)  \lambda_i \lambda_j
+\]</span> <br></p>
+<p>subject to:</p>
+<p><br> <span class="math display">\[
+0 \leq \lambda_i \leq C, \quad 1 \leq i \leq n
+\]</span> <br> <span class="math display">\[
+\sum \limits_{i = 1}^{n} \lambda_i y_i = 0
+\]</span></p>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+</div>
+</body>
+</html>

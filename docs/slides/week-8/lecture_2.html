@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <script type="text/javascript" src="https://livejs.com/live.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Karthik Thiagarajan" />
+  <title>Support Vector Machines</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Support Vector Machines</h1>
+  <p class="subtitle">Machine Learning Techniques</p>
+  <p class="author">
+Karthik Thiagarajan
+  </p>
+</div>
+<div id="course-outline" class="slide section level1">
+<h1>Course Outline</h1>
+<ul>
+<li><p>Linear regression</p></li>
+<li><p>Least square classification</p></li>
+<li><p>Perceptron</p></li>
+<li><p>Logistic regression</p></li>
+<li><p>Naive Bayes</p></li>
+<li><p>Softmax regression</p></li>
+<li><p><strong>Support Vector Machines (SVM)</strong></p></li>
+<li><p>Decision trees</p></li>
+<li><p>Ensemble techniques</p></li>
+<li><p>K-means clustering</p></li>
+<li><p>Artificial Neural Networks</p></li>
+</ul>
+</div>
+<div id="lecture-outline" class="slide section level1">
+<h1>Lecture Outline</h1>
+<div>
+<ul class="incremental">
+<li>Motivation</li>
+<li><strong>Geometry</strong></li>
+<li>Hard-margin SVM
+<ul class="incremental">
+<li>Formulation</li>
+<li>Optimization (recap)</li>
+<li>Optimization</li>
+</ul></li>
+<li>Soft-margin SVM</li>
+<li>Approximate solution</li>
+</ul>
+</div>
+</div>
+<div id="geometry" class="slide section level1">
+<h1>Geometry</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/010.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+</div>
+<div id="geometry-1" class="slide section level1">
+<h1>Geometry</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/010.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+w_0 \cdot 1 + w_1 \cdot x_1 + w_2 \cdot x_2 = 0
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="geometry-2" class="slide section level1">
+<h1>Geometry</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/010.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+w_0 + w_1 x_1 + w_2 x_2 = 0
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="geometry-3" class="slide section level1">
+<h1>Geometry</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/011.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+w_1 x_1 + w_2 x_2 + b = 0
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="geometry-4" class="slide section level1">
+<h1>Geometry</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/011.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+w^T x + b = 0
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="geometry-5" class="slide section level1">
+<h1>Geometry</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><img src="images/011.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<div>
+<p>If we have <span class="math inline">\(m\)</span> features:</p>
+<ul class="incremental">
+<li><span class="math inline">\(x \in \mathbb{R}^m\)</span></li>
+<li><span class="math inline">\(w \in \mathbb{R}^m\)</span></li>
+<li><span class="math inline">\(b \in \mathbb{R}\)</span></li>
+<li><span class="math inline">\(w^Tx + b = 0\)</span> is a hyperplane in <span class="math inline">\(\mathbb{R}^m\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="geometry-6" class="slide section level1">
+<h1>Geometry</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><img src="images/011.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<div>
+<p>If <span class="math inline">\(w^Tx + b = 0\)</span> is a hyperplane, then:</p>
+<ul class="incremental">
+<li><span class="math inline">\((2w)^Tx + 2b = 0\)</span></li>
+<li><span class="math inline">\((3w)^Tx + 3b = 0\)</span></li>
+<li><span class="math inline">\((kw)^Tx + kb = 0\)</span>, where <span class="math inline">\(k \neq 0\)</span><br />
+</li>
+<li>For a given hyperplane, <span class="math inline">\((w, b)\)</span> is not unique</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="distance" class="slide section level1">
+<h1>Distance</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/013.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+</div>
+<div id="distance-1" class="slide section level1">
+<h1>Distance</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/014.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+</div>
+<div id="distance-2" class="slide section level1">
+<h1>Distance</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/015.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+</div>
+<div id="distance-3" class="slide section level1">
+<h1>Distance</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/015.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+<p><span class="math display">\[
+\begin{array}[c|c|c]
+&amp; w^Tx + b &amp; = \qquad \qquad \qquad \qquad\  &amp;
+\end{array}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="distance-4" class="slide section level1">
+<h1>Distance</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/015.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+<p><span class="math display">\[
+\begin{array}[c|c|c]
+&amp; w^Tx + b &amp; = &amp; w^T(x - x_0 + x_0) + b\\\\
+\end{array}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="distance-5" class="slide section level1">
+<h1>Distance</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/015.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+<p><span class="math display">\[
+\begin{array}[c|c|c]
+&amp; w^Tx + b &amp; = &amp; w^T(x - x_0 + x_0) + b\\\\
+&amp; = &amp; w^T(x - x_0) + w^T x_0 + b &amp;\\\\
+\end{array}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="distance-6" class="slide section level1">
+<h1>Distance</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/015.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+<p><span class="math display">\[
+\begin{array}[c|c|c]
+&amp; w^Tx + b &amp; = &amp; w^T(x - x_0 + x_0) + b\\\\
+&amp; = &amp; w^T(x - x_0) + w^T x_0 + b &amp;\\\\
+&amp; = &amp; w^T(x - x_0)
+\end{array}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="distance-7" class="slide section level1">
+<h1>Distance</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/015.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+<p><span class="math display">\[
+\begin{array}[c|c|c]
+&amp; w^Tx + b &amp; = &amp; w^T(x - x_0 + x_0) + b\\\\
+&amp; = &amp; w^T(x - x_0) + w^T x_0 + b &amp;\\\\
+&amp; = &amp; w^T(x - x_0)\\\\
+&amp; = &amp; ||w|| \cdot ||x - x_0||\\\\
+\end{array}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="distance-8" class="slide section level1">
+<h1>Distance</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/015.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+<p><span class="math display">\[
+\begin{array}[c|c|c]
+&amp; w^Tx + b &amp; = &amp; w^T(x - x_0 + x_0) + b\\\\
+&amp; = &amp; w^T(x - x_0) + w^T x_0 + b &amp;\\\\
+&amp; = &amp; w^T(x - x_0)\\\\
+&amp; = &amp; ||w|| \cdot ||x - x_0||\\\\
+||x - x_0|| &amp; = &amp; \cfrac{w^Tx + b}{||w||}
+\end{array}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="distance-9" class="slide section level1">
+<h1>Distance</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/015.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+<p><span class="math display">\[
+\begin{array}[c|c|c]
+&amp; w^Tx + b &amp; = &amp; w^T(x - x_0 + x_0) + b\\\\
+&amp; = &amp; w^T(x - x_0) + w^T x_0 + b &amp;\\\\
+&amp; = &amp; w^T(x - x_0)\\\\
+&amp; = &amp; ||w|| \cdot ||x - x_0||\\\\
+||x - x_0|| &amp; = &amp; \cfrac{w^Tx + b}{||w||}
+\end{array}
+\]</span> <br></p>
+<p><strong>NOTE</strong>: If <span class="math inline">\(x\)</span> is on the other side of the boundary, we have to introduce a negative sign.</p>
+</div>
+</div>
+</div>
+<div id="distance-10" class="slide section level1">
+<h1>Distance</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><img src="images/015.svg" width="900" /></p>
+</div><div class="column" style="width:50%;">
+<p>Distance of a point <span class="math inline">\(x\)</span> from the hyperplane specified by <span class="math inline">\((w, b)\)</span> is given by:</p>
+<p><br> <span class="math display">\[
+\huge  \left | \cfrac{w^Tx + b}{||w||} \right |
+\]</span></p>
+</div>
+</div>
+</div>
+</body>
+</html>
