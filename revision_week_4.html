@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <script type="text/javascript" src="https://livejs.com/live.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>Quiz-1 | Revision | Week-4</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Quiz-1 | Revision | Week-4</h1>
+  <p class="subtitle">Machine Learning Techniques</p>
+</div>
+<div id="unsupervised-learning" class="slide section level1">
+<h1>Unsupervised Learning</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<div>
+<ul class="incremental">
+<li>Representation Learning
+<ul class="incremental">
+<li>PCA</li>
+<li>Kernel-PCA</li>
+</ul></li>
+<li>Clustering
+<ul class="incremental">
+<li>K-means or Lloyd’s algorithm</li>
+</ul></li>
+<li>Estimation
+<ul class="incremental">
+<li>MLE</li>
+<li>Bayesian estimation</li>
+<li>GMMs</li>
+<li>EM algorithm</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="theme" class="slide section level1">
+<h1>Theme</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\Large \text{Compression} \rightarrow \text{Comprehension}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="estimation" class="slide section level1">
+<h1>Estimation</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<div>
+<ul class="incremental">
+<li><p>Model the data-generation process</p>
+<ul class="incremental">
+<li>Where does the data come from?</li>
+<li>What is the process that generates the data?</li>
+<li>What are the parameters that govern this process?</li>
+</ul>
+<p><br></p></li>
+<li><p>How is it different from clustering and representation learning?</p>
+<ul class="incremental">
+<li>Present <span class="math inline">\(\rightarrow\)</span> Future: Start with what is given and try to best explain some patterns in it.</li>
+<li>Present <span class="math inline">\(\rightarrow\)</span> Past: Explore the process that could have given rise to the data.</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="generative-story" class="slide section level1">
+<h1>Generative story</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+1, \quad 0, \quad 1, \quad 1, \quad 0, \quad 1
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="generative-story-1" class="slide section level1">
+<h1>Generative story</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+1, \quad 0, \quad 1, \quad 1, \quad 0, \quad 1
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<div>
+<ul class="incremental">
+<li>Coin flip</li>
+<li>Bernoulli distribution</li>
+<li><span class="math inline">\(x \sim Br(p)\)</span></li>
+<li><span class="math inline">\(x\)</span> is sampled from a Bernoulli distribution with parameter <span class="math inline">\(p\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="generative-story-2" class="slide section level1">
+<h1>Generative story</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+165, \quad 173, \quad 150, \quad 185, \quad 178, \quad 171
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="generative-story-3" class="slide section level1">
+<h1>Generative story</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+165, \quad 173, \quad 150, \quad 185, \quad 178, \quad 171
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<div>
+<ul class="incremental">
+<li>Gaussian distribution</li>
+<li><span class="math inline">\(x \sim \mathcal{N}(\mu, \sigma^2)\)</span></li>
+<li><span class="math inline">\(x\)</span> is sampled from a Gaussian distribution with parameters <span class="math inline">\(\mu, \sigma^2\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="parameter-estimation" class="slide section level1">
+<h1>Parameter estimation</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<div>
+<ul class="incremental">
+<li>Data</li>
+<li>Model</li>
+<li>Estimate the parameters</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="parameter-estimation-1" class="slide section level1">
+<h1>Parameter estimation</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<ul>
+<li>Data</li>
+<li>Model</li>
+<li>Estimate the parameters</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p>Methods</p>
+<div>
+<ul class="incremental">
+<li>MLE</li>
+<li>Bayesian estimation</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="mle" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p>Depends on two things</p>
+<div>
+<ul class="incremental">
+<li>Data</li>
+<li>Model</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle-1" class="slide section level1">
+<h1>MLE</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p>Depends on two things</p>
+<ul>
+<li>Data</li>
+<li>Model</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\large L(D; \theta)
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="assumptions-in-mle" class="slide section level1">
+<h1>Assumptions in MLE</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p>Two assumptions</p>
+<ul>
+<li>Independence</li>
+<li>Identical distribution</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><u>Independence</u> <span class="math display">\[
+P(x_i\ |\ x_j) = P(x_i), \quad i \neq j
+\]</span> <u>Identically distributed</u> <span class="math display">\[
+P(x_i) = P(x_j), \quad \forall i, j \in [1, n]
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="mle-for-bernoulli" class="slide section level1">
+<h1>MLE for Bernoulli</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+1,\quad 0,\quad 1,\quad 1,\quad 0
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle-for-bernoulli-1" class="slide section level1">
+<h1>MLE for Bernoulli</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+1,\quad 0,\quad 1,\quad 1,\quad 0
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><u>Likelihood</u> <span class="math display">\[
+L(D; p) = p^3(1 - p)^2
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="mle-for-bernoulli-2" class="slide section level1">
+<h1>MLE for Bernoulli</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+1,\quad 0,\quad 1,\quad 1,\quad 0
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><u>Likelihood</u> <span class="math display">\[
+L(D; p) = p^3(1 - p)^2
+\]</span> <u>Log-likelihood</u> <span class="math display">\[
+\begin{aligned}
+l(D; p) &amp;= \log L(D; p)\\\\
+&amp;= 3 \log p + 2 \log(1 - p)
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="mle-for-bernoulli-3" class="slide section level1">
+<h1>MLE for Bernoulli</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\begin{aligned}
+l(D; p) &amp;= 3 \log p + 2 \log(1 - p)\\\\
+l^{\prime}(D; p) &amp;= 0\\\\
+\cfrac{3}{p} - \cfrac{2}{1 - p} &amp;= 0\\\\
+\hat{p}_{\tiny ML} &amp;= \cfrac{3}{5}
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle-for-bernoulli-4" class="slide section level1">
+<h1>MLE for Bernoulli</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\Large \hat{p}_{\tiny ML} = \cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} x_i
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle-for-gaussian" class="slide section level1">
+<h1>MLE for Gaussian</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\large L(D; \mu, \sigma^2) = \prod \limits_{i = 1}^{n} f(x_i; \mu, \sigma^2)
+\]</span> where <span class="math display">\[
+\small f(x; \mu, \sigma^2) = \cfrac{1}{\sqrt{2 \pi} \sigma} \exp \left[ \cfrac{-(x - \mu)^2}{2 \sigma^2} \right]
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle-for-gaussian-1" class="slide section level1">
+<h1>MLE for Gaussian</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+l(D; \mu, \sigma^2) = - n \log (\sqrt{2 \pi} \sigma) + \cfrac{1}{2 \sigma^2} \sum \limits_{i = 1}^{n} -(x_i - \mu)^2 
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle-for-gaussian-2" class="slide section level1">
+<h1>MLE for Gaussian</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\Large \hat{\mu}_{\tiny ML} = \cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} x_i
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="bayesian-modeling" class="slide section level1">
+<h1>Bayesian modeling</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br></p>
+<div>
+<ul class="incremental">
+<li>Prior</li>
+<li>Data</li>
+<li>Likelihood</li>
+<li>Evidence</li>
+<li>Posterior</li>
+</ul>
+</div>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="bayes-rule" class="slide section level1">
+<h1>Bayes’ rule</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\text{Posterior} = \cfrac{\text{Likelihood}}{\text{Evidence}} \cdot \text{Prior}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="bayes-rule-1" class="slide section level1">
+<h1>Bayes’ rule</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\text{Posterior} = \cfrac{\text{Likelihood}}{\text{Evidence}} \cdot \text{Prior}
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+P(\theta\ |\ D) = \cfrac{P(D\ |\ \theta)}{P(D)} \cdot P(\theta)
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="beta" class="slide section level1">
+<h1>Beta</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\text{Beta}(\alpha, \beta) = \cfrac{1}{Z} \cdot p^{\alpha - 1} \cdot (1 - p)^{\beta - 1} \quad\quad \alpha, \beta &gt; 0
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="conjugate-prior" class="slide section level1">
+<h1>Conjugate prior</h1>
+<p><br></p>
+<div>
+<ul class="incremental">
+<li>Beta distribution is a conjugate prior for the Bernoulli distribution</li>
+<li><span class="math inline">\(n_1\)</span> ones and <span class="math inline">\(n_0\)</span> zeros</li>
+<li>Prior is <span class="math inline">\(\text{Beta}(\alpha, \beta)\)</span></li>
+<li>Posterior is <span class="math inline">\(\text{Beta}(\alpha + n_1, \beta + n_0)\)</span></li>
+</ul>
+</div>
+</div>
+<div id="point-estimates" class="slide section level1">
+<h1>Point estimates</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br></p>
+<div>
+<ul class="incremental">
+<li>MAP
+<ul class="incremental">
+<li>mode of the posterior</li>
+<li>differentiate posterior w.r.t <span class="math inline">\(p\)</span> and set it to zero</li>
+</ul></li>
+<li>Expected value
+<ul class="incremental">
+<li><span class="math inline">\(\cfrac{\alpha}{\alpha + \beta}\)</span></li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="why-go-for-gmms" class="slide section level1">
+<h1>Why go for GMMs</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<div>
+<ul class="incremental">
+<li>Model more complex situations</li>
+<li>Multi-modal datasets</li>
+<li>Latent variable models</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img src="images/img_008.png" width="500" /></p>
+</div>
+</div>
+</div>
+<div id="gmm-generative-story" class="slide section level1">
+<h1>GMM: generative story</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br></p>
+<p>Two steps</p>
+<div>
+<ul class="incremental">
+<li>Pick a mixture</li>
+<li>Sample a point from the mixture</li>
+</ul>
+</div>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="gmm-setup" class="slide section level1">
+<h1>GMM: setup</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br></p>
+<p>Two steps</p>
+<div>
+<ul class="incremental">
+<li><span class="math inline">\(K\)</span> mixutres: <span class="math inline">\([\pi_1, \cdots, \pi_k, \cdots, \pi_K]\)</span></li>
+<li>Mixture means: <span class="math inline">\([\mu_1, \cdots, \mu_k, \cdots, \mu_K]\)</span></li>
+<li>Mixture variances: <span class="math inline">\([\sigma_1^2, \cdots, \sigma_k^2, \cdots, \sigma_K^2]\)</span></li>
+</ul>
+</div>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="question" class="slide section level1">
+<h1>Question</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br></p>
+<p>What is the value of the following expression? <span class="math display">\[
+\sum \limits_{i = 1}^{K} \pi_k
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="gmm-generative-process" class="slide section level1">
+<h1>GMM: generative process</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p>For generating a data-point <span class="math inline">\(x_i\)</span>:</p>
+<div>
+<ul class="incremental">
+<li>Sample a mixture index based on the probabilities <span class="math inline">\([\pi_1, \cdots, \pi_K]\)</span></li>
+<li>Call this index <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(z_i = k\)</span></li>
+<li>Sample a point from the <span class="math inline">\(k^{th}\)</span> Gaussian</li>
+<li><span class="math inline">\(x_i \sim \mathcal{N}(\mu_k, \sigma_k^2)\)</span></li>
+</ul>
+</div>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="gmm-density" class="slide section level1">
+<h1>GMM: density</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\Large f_{\tiny GMM}(x) = \sum \limits_{k = 1}^{K} P(z = k) \cdot f(x\ |\ z = k)
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="gmm-density-1" class="slide section level1">
+<h1>GMM: density</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\Large f_{\tiny GMM}(x) = \sum \limits_{k = 1}^{K} \pi_k \cdot f(x\ |\ z = k)
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle-for-a-gmm" class="slide section level1">
+<h1>MLE for a GMM</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\begin{aligned}
+L(D; \theta) &amp;= \prod \limits_{i = 1}^{n} f_{\tiny GMM} (x_i)\\\\
+l(D; \theta) &amp;= \sum \limits_{i = 1}^{n} \log f_{\tiny GMM}(x_i)
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle-for-a-gmm-1" class="slide section level1">
+<h1>MLE for a GMM</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><span class="math display">\[
+\begin{aligned}
+l(D; \theta) &amp;= \sum \limits_{i = 1}^{n} \log f_{\tiny GMM}(x_i)\\\\
+&amp;= \sum \limits_{i = 1}^{n} \log \left[ \sum \limits_{k = 1}^{K} \pi_k f(x_i\ |\ z_i = k) \right]
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle-for-a-gmm-2" class="slide section level1">
+<h1>MLE for a GMM</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><span class="math display">\[
+\begin{aligned}
+l(D; \theta) &amp;= \sum \limits_{i = 1}^{n} \log f_{\tiny GMM}(x_i)\\\\
+&amp;= \sum \limits_{i = 1}^{n} \log \left[ \sum \limits_{k = 1}^{K} \pi_k f(x_i\ |\ z_i = k) \right]\\\\
+&amp;= \sum \limits_{i = 1}^{n} \log \left[ \sum \limits_{k = 1}^{K} \lambda_k^{i} \cfrac{\pi_k}{\lambda_k^{i}} f(x_i\ |\ z_i = k) \right]
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="mle-for-a-gmm-3" class="slide section level1">
+<h1>MLE for a GMM</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><span class="math display">\[
+\begin{aligned}
+l(D; \theta) &amp;= \sum \limits_{i = 1}^{n} \log f_{\tiny GMM}(x_i)\\\\
+&amp;= \sum \limits_{i = 1}^{n} \log \left[ \sum \limits_{k = 1}^{K} \pi_k f(x_i\ |\ z_i = k) \right]\\\\
+&amp;= \sum \limits_{i = 1}^{n} \log \left[ \sum \limits_{k = 1}^{K} \lambda_k^{i} \cfrac{\pi_k}{\lambda_k^{i}} f(x_i\ |\ z_i = k) \right]\\\\\
+&amp;\geq \sum \limits_{i = 1}^{n} \sum \limits_{k = 1}^{K} \lambda_k^{i} \log \left[   \cfrac{\pi_k}{\lambda_k^{i}} f(x_i\ |\ z_i = k) \right]\quad \quad \text{Jensen&#39;s inequality}
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="modified-log-likelihood" class="slide section level1">
+<h1>Modified log-likelihood</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\Large ml(D; \theta, \lambda) = \sum \limits_{i = 1}^{n} \sum \limits_{k = 1}^{K} \lambda_k^{i} \log \left[   \cfrac{\pi_k}{\lambda_k^{i}} f(x_i\ |\ z_i = k) \right]\\\
+\]</span> where</p>
+<p><br> <span class="math display">\[
+0 \leq \lambda_k^{i} \leq 1 \quad \text{and} \quad \sum \limits_{k = 1}^{K} \lambda_k^{i} = 1
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="em" class="slide section level1">
+<h1>EM</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p>Parameter estimation for GMMs</p>
+<div>
+<ul class="incremental">
+<li><p>Intialize <span class="math inline">\(\theta^{0}\)</span> using Lloyd’s with <span class="math inline">\(k = K\)</span></p></li>
+<li><p>Until convergence</p>
+<ul class="incremental">
+<li>E-step
+<ul class="incremental">
+<li>use <span class="math inline">\(\theta^{(t)}\)</span> to estimate <span class="math inline">\(\lambda^{(t)}\)</span></li>
+</ul></li>
+<li>M-step
+<ul class="incremental">
+<li>use <span class="math inline">\(\lambda^{(t)}\)</span> to estimate <span class="math inline">\(\theta^{(t+1)}\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="e-step" class="slide section level1">
+<h1>E-step</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\begin{aligned}
+\lambda_k^{i} &amp;= P(z_i = k\ |\ x_i)\\\\
+&amp;= \cfrac{P(z_i = k) \cdot f(x_i\ |\ z_i = k)}{\sum \limits_{l = 1}^{K} P(z_i = l) \cdot f(x_i\ |\ z_i = l)}
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="m-step" class="slide section level1">
+<h1>M-step</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br> <span class="math display">\[
+\Large \begin{aligned}
+\mu_k = \cfrac{\sum \limits_{i = 1}^{n} \lambda_k^{i} x_i}{\sum \limits_{i = 1}^{n} \lambda_k^{i}}
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br> <span class="math display">\[
+\Large \begin{aligned}
+\sigma_k^{2} = \cfrac{\sum \limits_{i = 1}^{n} \lambda_k^{i} (x_i - \mu_k)^2}{\sum \limits_{i = 1}^{n} \lambda_k^{i}}
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+<p><span class="math display">\[
+\Large \pi_k = \cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} \lambda_k^{i}
+\]</span></p>
+</div>
+<div id="hard-clustering" class="slide section level1">
+<h1>Hard clustering</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+z_i = \operatorname*{argmax} \limits_{k} \quad \lambda_k^{i}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+</body>
+</html>

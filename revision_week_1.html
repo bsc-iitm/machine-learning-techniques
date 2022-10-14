@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <script type="text/javascript" src="https://livejs.com/live.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>Quiz-1 | Revision | Week-1</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Quiz-1 | Revision | Week-1</h1>
+  <p class="subtitle">Machine Learning Techniques</p>
+</div>
+<div id="unsupervised-learning" class="slide section level1">
+<h1>Unsupervised Learning</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<div>
+<ul class="incremental">
+<li>Representation Learning
+<ul class="incremental">
+<li>PCA</li>
+<li>Kernel-PCA</li>
+</ul></li>
+<li>Clustering
+<ul class="incremental">
+<li>K-means or Lloyd’s algorithm</li>
+</ul></li>
+<li>Estimation
+<ul class="incremental">
+<li>MLE</li>
+<li>Bayesian estimation</li>
+<li>GMMs</li>
+<li>EM algorithm</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="theme" class="slide section level1">
+<h1>Theme</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\Large \text{Compression} \rightarrow \text{Comprehension}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="representations" class="slide section level1">
+<h1>Representations</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\large \{\mathbf{x}_1, \cdots, \mathbf{x}_n\} \rightarrow \{\mathbf{x}_1^{(r)}, \cdots, \mathbf{x}_n^{(r)}\}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="reconstructions" class="slide section level1">
+<h1>Reconstructions</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\large \{\mathbf{x}_1, \cdots, \mathbf{x}_n\} \rightarrow \{\mathbf{x}_1^{(r)}, \cdots, \mathbf{x}_n^{(r)}\}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="reconstruction-error" class="slide section level1">
+<h1>Reconstruction Error</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p><br> <span class="math display">\[
+\large \{\mathbf{x}_1, \cdots, \mathbf{x}_n\} \rightarrow \{\mathbf{x}_1^{(r)}, \cdots, \mathbf{x}_n^{(r)}\}
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br><br> <span class="math display">\[
+\cfrac{1}{n} \cdot \Large \sum \limits_{i = 1}^{n} ||\mathbf{x}_i - \mathbf{x}_i^{(r)}||^2
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="good-representations" class="slide section level1">
+<h1>Good representations</h1>
+<div class="columns" align="center">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\min  \quad \cfrac{1}{n} \cdot \Large \sum \limits_{i = 1}^{n} ||\mathbf{x}_i - \mathbf{x}_i^{(r)}||^2
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="good-representation" class="slide section level1">
+<h1>Good representation?</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\min \quad \Large \cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} ||\mathbf{x}_i - \mathbf{x}_i^{(r)}||^2
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br><br> <span class="math display">\[
+\mathbf{x}_i^{(r)} = \mathbf{x}_i
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="good-representation-1" class="slide section level1">
+<h1>Good representation</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<div>
+<ul class="incremental">
+<li>small reconstruction error</li>
+<li>large compression ratio</li>
+</ul>
+</div>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="proxies" class="slide section level1">
+<h1>Proxies</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/img_001.png" style="width:70.0%" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="proxies-1" class="slide section level1">
+<h1>Proxies</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/img_002.png" style="width:70.0%" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="proxies-2" class="slide section level1">
+<h1>Proxies</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/img_003.png" style="width:70.0%" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="best-proxy" class="slide section level1">
+<h1>Best Proxy</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/img_004.png" style="width:70.0%" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="best-proxy-1" class="slide section level1">
+<h1>Best Proxy</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/img_005.png" style="width:100.0%" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="error-for-best-proxy" class="slide section level1">
+<h1>Error for Best Proxy</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><img src="images/img_005.png" style="width:130.0%" /></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+||\mathbf{x} - (\mathbf{x}^T\mathbf{w}) \mathbf{w}||^2,\quad ||\mathbf{w}|| = 1
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="for-dataset" class="slide section level1">
+<h1>For Dataset</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\cfrac{1}{n} \cdot\sum \limits_{i = 1}^{n} ||\mathbf{x}_i - (\mathbf{x}_i^T\mathbf{w}) \mathbf{w}||^2, \quad ||\mathbf{w}|| = 1
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="error-minimization" class="slide section level1">
+<h1>Error minimization</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\min_{\mathbf{w}, ||\mathbf{w}|| = 1} \quad \cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} ||\mathbf{x}_i - (\mathbf{x}_i^T\mathbf{w}) \mathbf{w}||^2
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="minimization-leftrightarrow-maximization" class="slide section level1">
+<h1>Minimization <span class="math inline">\(\leftrightarrow\)</span> Maximization</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\min_{\mathbf{w}, ||\mathbf{w}|| = 1}\quad \cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} ||\mathbf{x}_i - (\mathbf{x}_i^T\mathbf{w}) \mathbf{w}||^2 \quad \rightarrow \quad\max_{\mathbf{w}, ||\mathbf{w}|| = 1}\quad  \cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} (\mathbf{x}_i^T\mathbf{w}) ^2
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="maximization" class="slide section level1">
+<h1>Maximization</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max_{\mathbf{w}, ||\mathbf{w}|| = 1}\quad  \cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} (\mathbf{x}_i^T\mathbf{w}) ^2
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="maximization-1" class="slide section level1">
+<h1>Maximization</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max_{\mathbf{w}, ||\mathbf{w}|| = 1}\quad  \cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} (\mathbf{w}^T\mathbf{x}_i) (\mathbf{x}_i^T\mathbf{w}) 
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="maximization-2" class="slide section level1">
+<h1>Maximization</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max_{\mathbf{w}, ||\mathbf{w}|| = 1}\quad \mathbf{w}^T \left[ \cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} \mathbf{x}_i \mathbf{x}_i^T \right]\mathbf{w}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="maximization-3" class="slide section level1">
+<h1>Maximization</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max_{\mathbf{w}, ||\mathbf{w}|| = 1}\quad \mathbf{w}^T \mathbf{C}\mathbf{w}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="maximization-4" class="slide section level1">
+<h1>Maximization</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max_{\mathbf{w}, ||\mathbf{w}|| = 1}\quad \mathbf{w}^T \mathbf{C}\mathbf{w}
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br> <span class="math display">\[
+\mathbf{C} = \cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} \mathbf{x}_i \mathbf{x}_i^T
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="maximization-5" class="slide section level1">
+<h1>Maximization</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max_{\mathbf{w}, ||\mathbf{w}|| = 1}\quad \mathbf{w}^T \mathbf{C}\mathbf{w}
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br> <span class="math display">\[
+\mathbf{C} = \cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} \mathbf{x}_i \mathbf{x}_i^T
+\]</span> <br></p>
+<p>Assuming that the data is centered, <span class="math inline">\(\mathbf{C}\)</span> is its covariance matrix.</p>
+</div>
+</div>
+</div>
+<div id="maximization-6" class="slide section level1">
+<h1>Maximization</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max_{\mathbf{w}, ||\mathbf{w}|| = 1}\quad \mathbf{w}^T \mathbf{C}\mathbf{w}
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p>Solution is the eigenvector of the largest eigenvalue of the covariance matrix.</p>
+</div>
+</div>
+</div>
+<div id="directions" class="slide section level1">
+<h1>Directions</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/img_006.png" style="width:80.0%" /></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="errors-to-residues" class="slide section level1">
+<h1>Errors to Residues</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\mathbf{x}_i - (\mathbf{x}_i^T \mathbf{w}) \mathbf{w}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="second-round" class="slide section level1">
+<h1>Second Round</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max \limits_{\mathbf{w}, ||\mathbf{w}|| = 1, \mathbf{w} \perp \mathbf{w}_1}\quad \quad \mathbf{w}^T \mathbf{C}\mathbf{w}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="second-round-1" class="slide section level1">
+<h1>Second Round</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\max \limits_{\mathbf{w}, ||\mathbf{w}|| = 1, \mathbf{w} \perp \mathbf{w}_1}\quad \quad \mathbf{w}^T \mathbf{C}\mathbf{w}
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p>Solution is the eigenvector of the second largest eigenvalue of the covariance matrix.</p>
+</div>
+</div>
+</div>
+<div id="kth-round" class="slide section level1">
+<h1><span class="math inline">\(k^{th}\)</span> round</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br></p>
+<p><span class="math inline">\(\mathbf{w}_k\)</span> is the eigenvector of the <span class="math inline">\(k^{th}\)</span> largest eigenvalue of <span class="math inline">\(\mathbf{C}\)</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="representation" class="slide section level1">
+<h1>Representation</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\mathbf{x}_i^{(r)} = \sum \limits_{k = 1}^{K} (\mathbf{x}_i^T\mathbf{w}_k) \mathbf{w}_k
+\]</span></p>
+</div><div class="column" style="width:0%;">
+
+</div>
+</div>
+</div>
+<div id="representation-1" class="slide section level1">
+<h1>Representation</h1>
+<div class="columns" align="left">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\mathbf{x}_i^{(r)} = \sum \limits_{k = 1}^{K} (\mathbf{x}_i^T\mathbf{w}_k) \mathbf{w}_k
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<p><br></p>
+<p>If <span class="math inline">\(K = d\)</span>, <span class="math inline">\(\mathbf{x}_i^{(r)} = \mathbf{x}_i\)</span>, no compression</p>
+</div>
+</div>
+</div>
+<div id="kth-round-1" class="slide section level1">
+<h1><span class="math inline">\(k^{th}\)</span> round</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\begin{aligned}
+\mathbf{w}_k^T \mathbf{C} \mathbf{w}_k &amp;= \mathbf{w}_k^T (\lambda_k \mathbf{w}_k)\\\\
+&amp;= \lambda_k \cdot \mathbf{w}_k^T \mathbf{w}_k\\\\
+&amp;= \lambda_k
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="heuristic" class="slide section level1">
+<h1>Heuristic</h1>
+<div class="columns" align="center">
+<div class="column" style="width:100%;">
+<p><img src="images/img_007.png" style="width:90.0%" /></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="heuristic-1" class="slide section level1">
+<h1>Heuristic</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\cfrac{\sum \limits_{k = 1}^{K} \lambda_k}{\sum \limits_{k = 1}^{d} \lambda_k} \geq 0.95
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="variance" class="slide section level1">
+<h1>Variance</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\{\mathbf{x}_1^T \mathbf{w}_k, \cdots, \mathbf{x}_n^T \mathbf{w}_k \}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="variance-1" class="slide section level1">
+<h1>Variance</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\begin{aligned}
+\cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} (\mathbf{x}_i^T \mathbf{w}_k)^2
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="variance-2" class="slide section level1">
+<h1>Variance</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\begin{aligned}
+\cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} (\mathbf{x}_i^T \mathbf{w}_k)^2 &amp;= \mathbf{w}_k^T \mathbf{C} \mathbf{w}_k
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="variance-3" class="slide section level1">
+<h1>Variance</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\begin{aligned}
+\cfrac{1}{n} \cdot \sum \limits_{i = 1}^{n} (\mathbf{x}_i^T \mathbf{w}_k)^2 &amp;= \mathbf{w}_k^T \mathbf{C} \mathbf{w}_k\\\\
+&amp;= \lambda_k
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="total-variance" class="slide section level1">
+<h1>Total Variance</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br> <span class="math display">\[
+\lambda_1 + \cdots + \lambda_d = \text{trace}(\mathbf{C})
+\]</span></p>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="linear-algebra-aspects" class="slide section level1">
+<h1>Linear Algebra Aspects</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<div>
+<ul class="incremental">
+<li>The covaraince matrix is:
+<ul class="incremental">
+<li>symmetric</li>
+<li>positive semi-definite</li>
+</ul></li>
+<li>Eigenvalues are non-negative</li>
+<li>The covariance matrix is orthogonally diagonalizable</li>
+<li><span class="math inline">\(\mathbf{C} = \mathbf{W} \cdot \text{diag}(\lambda_1, \cdots, \lambda_d) \cdot \mathbf{W}^T = \sum \limits_{j = 1}^{d} \lambda_j \mathbf{w}_j \mathbf{w}_j^T\)</span></li>
+</ul>
+</div>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="compression-standard-pca" class="slide section level1">
+<h1>Compression (standard PCA)</h1>
+<div class="columns" align="left">
+<div class="column" style="width:100%;">
+<p><br></p>
+<p><br></p>
+<p>Original dataset</p>
+<ul>
+<li><span class="math inline">\(\mathbf{x}_i \in \mathbb{R}^{d}\)</span></li>
+<li><span class="math inline">\(n\)</span> samples</li>
+<li><span class="math inline">\(nd\)</span> values</li>
+</ul>
+</div><div class="column" style="width:0%;">
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="compression-standard-pca-1" class="slide section level1">
+<h1>Compression (standard PCA)</h1>
+<div class="columns" align="left">
+<div class="column" style="width:30%;">
+<p><br></p>
+<p><br></p>
+<p>Original dataset</p>
+<ul>
+<li><span class="math inline">\(\mathbf{x}_i \in \mathbb{R}^{d}\)</span></li>
+<li><span class="math inline">\(n\)</span> samples</li>
+<li><span class="math inline">\(nd\)</span> values</li>
+</ul>
+</div><div class="column" style="width:70%;">
+<p><br></p>
+<p><br></p>
+<p>Reconstructed dataset (top-<span class="math inline">\(K\)</span> principal components)</p>
+<ul>
+<li><span class="math inline">\(\mathbf{w}_i \in \mathbb{R}^{d}\)</span></li>
+<li><span class="math inline">\(Kd\)</span> values to store the prinipal components</li>
+<li><span class="math inline">\(\mathbf{x}_i^T \mathbf{w}_k\)</span>, the projection of point <span class="math inline">\(i\)</span> on component <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(Kn\)</span> projections</li>
+<li><span class="math inline">\(K(n + d)\)</span> values in total</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="dimensionality-reduction" class="slide section level1">
+<h1>Dimensionality reduction</h1>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<div>
+<ul class="incremental">
+<li><p>Retain the scalar projections for the top <span class="math inline">\(K\)</span> principal components.</p></li>
+<li><p>Move from <span class="math inline">\(d \times n\)</span> to <span class="math inline">\(K \times n\)</span></p></li>
+<li><p>This is <strong>not</strong> the same as reconstruction.</p></li>
+</ul>
+</div>
+</div>
+</body>
+</html>
